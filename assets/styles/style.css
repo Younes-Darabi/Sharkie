@@ -4,8 +4,10 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0;
 }
 
 canvas{
     background-color: black;
+    border-radius: 5px;
 }
