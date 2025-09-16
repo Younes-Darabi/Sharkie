@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/icons/Sharkie.png">
+    <base href="/">
     <title>Sharkie</title>
+
+    <script src="assets/classes/movable-object.class.js" defer></script>
+    <script src="assets/classes/character.class.js" defer></script>
+    <script src="assets/classes/final-fish.class.js" defer></script>
+    <script src="assets/classes/jelly/jelly-green.class.js" defer></script>
+    <script src="assets/classes/jelly/jelly-lila.class.js" defer></script>
+    <script src="assets/classes/jelly/jelly-pink.class.js" defer></script>
+    <script src="assets/classes/jelly/jelly-yellow.class.js" defer></script>
+    <script src="assets/classes/puffer/puffer-green.class.js" defer></script>
+    <script src="assets/classes/puffer/puffer-orange.class.js" defer></script>
+    <script src="assets/classes/puffer/puffer-red.class.js" defer></script>
+    <script src="assets/classes/world.class.js" defer></script>
+    <script src="assets/scripts/game.js" defer></script>
+
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-<body>
+<body onload="init()">
+    <h1>Sharkie</h1>
+
+    <canvas id="canvas" width="750" height="480">
+    </canvas>
     
 </body>
 </html>
