@@ -1,17 +1,38 @@
 class JellyLila extends MovableObject {
     height = 80;
     width = 80;
+    IMAGES_SWIMMING = [
+        'assets/images/Enemies/Jelly/Lila/Lila1.png',
+        'assets/images/Enemies/Jelly/Lila/Lila2.png',
+        'assets/images/Enemies/Jelly/Lila/Lila3.png',
+        'assets/images/Enemies/Jelly/Lila/Lila4.png',
+    ];
 
     constructor() {
         super().loadImage('assets/images/Enemies/Jelly/Lila/Lila1.png');
-        this.x = 1120;
-        this.y = Math.random() * 600;
-        this.animate(Math.random() * 3);
+        this.loadImages(this.IMAGES_SWIMMING);
+
+        this.x = 1000;
+        this.y = 100;
+
+        this.animate();
     }
 
-    animate(speed) {
+    animate() {
+        this.moveTopBottom();
         setInterval(() => {
-            this.x -= speed;
-        }, 1000/60)
+            let i = this.currentImage % this.IMAGES_SWIMMING.length;
+            let path = this.IMAGES_SWIMMING[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }, 200)
     }
+
 }
+
+// this.animate(Math.random() * 3);
+// animate(speed) {
+//     setInterval(() => {
+//         this.x -= speed;
+//     }, 1000/60)
+// }

@@ -6,10 +6,17 @@ class World {
         new JellyPink(),
         new JellyYellow(),
         new JellyGreen(),
+    
         new PufferRed(),
         new PufferGreen(),
         new PufferOrange(),
         // new FinalFish(),
+    ];
+    coins = [
+        // new Coin(),
+    ];
+    animada = [
+        // new Animada(),
     ];
 
     backgroundObject = [
@@ -30,13 +37,11 @@ class World {
     }
 
     draw() {
-        // this.ctx.clearRect(0, 0, this.canvas.width.this.canvas.height);
-
         this.addObjectsToMap(this.backgroundObject);
-
         this.addToMap(this.character);
-
         this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.animada);
 
         // Draw() wird immer wieder aufgerufen
         let self = this;
