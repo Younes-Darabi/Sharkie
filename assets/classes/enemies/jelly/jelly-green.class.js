@@ -26,10 +26,6 @@ class JellyGreen extends MovableObject {
             this.img = this.imageCache[path];
             this.currentImage++;
         }, 200)
-
-        setInterval(() => {
-            this.y -= speed;
-        }, 1000 / 60)
     }
 
 }
