@@ -1,6 +1,3 @@
-let screenWidth = 1200;
-let screenHeight = 680;
-
 class MovableObject {
     img;
     height = 150;
@@ -8,6 +5,7 @@ class MovableObject {
     imageCache = {};
     currentImage = 0;
     speed = Math.random() * 1;
+    otherDirection = false;
 
     loadImage(path) {
         this.img = new Image();
@@ -20,6 +18,20 @@ class MovableObject {
             img.src = path;
             this.imageCache[path] = img;
         });
+    }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalFish || this instanceof Coin || this instanceof Animada) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
     }
 
     moveRight() {
@@ -39,10 +51,17 @@ class MovableObject {
         }, 1000 / 60);
     }
 
-
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed + 1;
         }, 1000 / 60)
     }
+
+    playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
 }

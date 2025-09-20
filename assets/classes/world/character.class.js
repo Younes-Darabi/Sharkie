@@ -4,6 +4,7 @@ class Character extends MovableObject {
     height = 300;
     width = 300;
     world;
+    speed = 1;
 
     IMAGES_IDLE = [
         'assets/images/1.Sharkie/1.IDLE/1.png',
@@ -47,34 +48,30 @@ class Character extends MovableObject {
         setInterval(() => {
 
             if (this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.RIGHT || this.world.keyboard.DOWN) {
-                //Swimming animation
-                let i = this.currentImage % this.IMAGES_SWIMMING.length;
-                let path = this.IMAGES_SWIMMING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_SWIMMING);
             }
             else {
-                //Idle animation
-                let i = this.currentImage % this.IMAGES_IDLE.length;
-                let path = this.IMAGES_IDLE[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_IDLE);
             }
         }, 120)
 
         setInterval(() => {
             if (this.world.keyboard.LEFT) {
-                this.x = Math.max(-55, this.x - 1);
+                this.x = Math.max(-255, this.x - this.speed);
+                this.otherDirection = true;
             }
             if (this.world.keyboard.UP) {
-                this.y = Math.max(-140, this.y - 1);
+                this.y = Math.max(-140, this.y - this.speed);
             }
             if (this.world.keyboard.RIGHT) {
-                this.x = Math.min(screenWidth-245, this.x + 1);
+                this.x = Math.min(screenWidth * 3 + 200, this.x + this.speed);
+                // this.x += 10;
+                this.otherDirection = false;
             }
             if (this.world.keyboard.DOWN) {
-                this.y = Math.min(screenHeight-240, this.y + 1);
+                this.y = Math.min(screenHeight - 240, this.y + this.speed);
             }
+            this.world.camera_x = -this.x + 200;
         }, 1)
     }
 
