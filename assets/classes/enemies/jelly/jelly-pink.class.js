@@ -12,8 +12,8 @@ class JellyPink extends MovableObject {
         super().loadImage('assets/images/Enemies/Jelly/Pink/Pink1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * screenWidth;
-        this.y = 200;
+        this.x = Math.random() * 4200;
+        this.y = Math.random() * screenHeight;
 
         this.animate();
     }

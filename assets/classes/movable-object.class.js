@@ -1,37 +1,32 @@
-class MovableObject {
-    img;
-    height = 150;
-    width = 150;
-    imageCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject {
     speed = Math.random() * 1;
     otherDirection = false;
+    lastHit = 0;
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
+    isColliding(mo) {
+        return this.x + this.offset.x < mo.x + mo.width &&
+               this.x + this.offset.x + this.offset.width > mo.x &&
+               this.y + this.offset.y < mo.y + mo.height &&
+               this.y + this.offset.y + this.offset.height > mo.y
     }
 
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalFish || this instanceof Coin || this instanceof Animada) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+    hit() {
+        this.percentage -= 1;
+        if (this.percentage < 0) {
+            this.percentage = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
+    }
+
+    isDead() {
+        return this.percentage == 0;
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
     }
 
     moveRight() {
@@ -45,7 +40,7 @@ class MovableObject {
 
             if (this.y <= 0) {
                 direction = 1;
-            } else if (this.y >= 600) {
+            } else if (this.y >= screenHeight - this.height) {
                 direction = -1;
             }
         }, 1000 / 60);

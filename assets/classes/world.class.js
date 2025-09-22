@@ -4,37 +4,52 @@ let screenHeight = 680;
 class World {
 
     character = new Character();
-
     level = level1;
-
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-
         this.setWorld();
+        this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this;
     };
 
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.percentage);
+                };
+            });
+
+        }, 200);
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObject);
+
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.animada);
-        this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -74,8 +89,8 @@ class World {
     }
 
     flipImageBack(mo) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 
 }

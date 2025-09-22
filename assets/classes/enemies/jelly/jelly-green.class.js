@@ -12,8 +12,8 @@ class JellyGreen extends MovableObject {
         super().loadImage('assets/images/Enemies/Jelly/Green/Green1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * screenWidth;
-        this.y = 0;
+        this.x = Math.random() * 4200;
+        this.y = Math.random() * screenHeight;
 
         this.animate();
     }
