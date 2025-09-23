@@ -5,32 +5,28 @@ class MovableObject extends DrawableObject {
 
     isColliding(mo) {
         return this.x + this.offset.x < mo.x + mo.width &&
-               this.x + this.offset.x + this.offset.width > mo.x &&
-               this.y + this.offset.y < mo.y + mo.height &&
-               this.y + this.offset.y + this.offset.height > mo.y
+            this.x + this.offset.x + this.offset.width > mo.x &&
+            this.y + this.offset.y < mo.y + mo.height &&
+            this.y + this.offset.y + this.offset.height > mo.y
     }
 
     hit() {
-        this.percentage -= 1;
-        if (this.percentage < 0) {
-            this.percentage = 0;
+        this.energy -= 1;
+        if (this.energy < 0) {
+            this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
     }
 
     isDead() {
-        return this.percentage == 0;
+        return this.energy == 0;
     }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1;
-    }
-
-    moveRight() {
-
     }
 
     moveTopBottom() {
@@ -49,6 +45,7 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed + 1;
+            this.x = this.x < -500 ? 5000 : this.x;
         }, 1000 / 60)
     }
 

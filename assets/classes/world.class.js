@@ -10,6 +10,8 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coinsCounter = new CoinsCounter();
+    posionsCounter = new PosionsCounter();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,10 +31,21 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
-                    this.statusBar.setPercentage(this.character.percentage);
+                    this.statusBar.setPercentage(this.character.energy);
                 };
             });
+            this.level.coins.forEach((coin) => {
+                if (this.character.isColliding(coin)) {
+                    this.coinsCounter.setCoins(this.character.coins);
 
+                };
+            });
+            this.level.posions.forEach((posion) => {
+                if (this.character.isColliding(posion)) {
+                    // this.posionsCounter.setPotions(this.character.posions);
+
+                };
+            });
         }, 200);
     }
 
@@ -44,12 +57,14 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinsCounter);
+        this.addToMap(this.posionsCounter);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.animada);
+        this.addObjectsToMap(this.level.posions);
 
         this.ctx.translate(-this.camera_x, 0);
 

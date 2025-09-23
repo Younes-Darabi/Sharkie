@@ -1,0 +1,31 @@
+{
+    "source": {
+        "include": [
+            "assets/classes/enemies/jelly/jelly-green.class.js",
+            "assets/classes/enemies/jelly/jelly-lila.class.js",
+            "assets/classes/enemies/jelly/jelly-pink.class.js",
+            "assets/classes/enemies/jelly/jelly-yellow.class.js",
+            "assets/classes/enemies/puffer/puffer-green.class.js",
+            "assets/classes/enemies/puffer/puffer-orange.class.js",
+            "assets/classes/enemies/puffer/puffer-red.class.js",
+            "assets/classes/enemies/final-fish.class.js",
+            "assets/classes/other/background-object.class.js",
+            "assets/classes/other/coin.class.js",
+            "assets/classes/other/coins-counter.class.js",
+            "assets/classes/other/keyboard.class.js",
+            "assets/classes/other/level.class.js",
+            "assets/classes/other/posion.class.js",
+            "assets/classes/other/posions-counter.class.js",
+            "assets/classes/other/status-bar.class.js",
+            "assets/classes/character.class.js",
+            "assets/classes/drawable-object.class.js",
+            "assets/classes/movable-object.class.js",
+            "assets/classes/world.class.js",
+            "assets/levels/level1.js",
+            "assets/scripts/game.js"
+        ]
+    },
+    "opts": {
+        "destination": "./out"
+    }
+}

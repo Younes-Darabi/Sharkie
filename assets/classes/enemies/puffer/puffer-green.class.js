@@ -13,7 +13,7 @@ class PufferGreen extends MovableObject {
         super().loadImage('assets/images/Enemies/Puffer/Green/1.Swim/1.swim1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * 4200;
+        this.x = Math.random() * 5000;
         this.y = Math.random() * (screenHeight - this.height);
 
         this.animate();

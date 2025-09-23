@@ -6,12 +6,11 @@ class Character extends MovableObject {
     world;
     speed = 1;
 
-    // hitbox
     offset = {
-        x: 75,
-        y: 160,
-        width: 175,
-        height: 75,
+        x: 90,
+        y: 170,
+        width: 145,
+        height: 55,
     };
 
     IMAGES_IDLE = [

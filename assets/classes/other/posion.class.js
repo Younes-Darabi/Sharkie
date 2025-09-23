@@ -1,7 +1,7 @@
-class Animada extends MovableObject {
+class Posion extends MovableObject {
     height = 80;
     width = 55;
-    IMAGES_ANIMADA = [
+    IMAGES_POSION = [
         'assets/images/4.Marcadores/Posión/Animada/1.png',
         'assets/images/4.Marcadores/Posión/Animada/2.png',
         'assets/images/4.Marcadores/Posión/Animada/3.png',
@@ -15,18 +15,18 @@ class Animada extends MovableObject {
 
     constructor() {
         super().loadImage('assets/images/4.Marcadores/Posión/Animada/1.png');
-        this.loadImages(this.IMAGES_ANIMADA);
+        this.loadImages(this.IMAGES_POSION);
 
-        this.x = 200;
-        this.y = 100;
+        this.x = Math.random() * 4000;
+        this.y = 80 + Math.random() * screenHeight - 80;
 
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_ANIMADA.length;
-            let path = this.IMAGES_ANIMADA[i];
+            let i = this.currentImage % this.IMAGES_POSION.length;
+            let path = this.IMAGES_POSION[i];
             this.img = this.imageCache[path];
             this.currentImage++;
         }, 170)

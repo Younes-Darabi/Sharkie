@@ -12,7 +12,7 @@ class JellyGreen extends MovableObject {
         super().loadImage('assets/images/Enemies/Jelly/Green/Green1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * 4200;
+        this.x = Math.random() * 4000;
         this.y = Math.random() * screenHeight;
 
         this.animate();

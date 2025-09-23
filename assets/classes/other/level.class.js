@@ -1,15 +1,15 @@
 class Level {
     enemies;
     coins;
-    animada;
+    posions;
     backgroundObject;
     level_end_x = 700;
 
     coins;
-    constructor(enemies, coins, animada, backgroundObject) {
+    constructor(enemies, coins, posions, backgroundObject) {
         this.enemies = enemies;
         this.coins = coins;
-        this.animada = animada;
+        this.posions = posions;
         this.backgroundObject = backgroundObject;
     }
 }

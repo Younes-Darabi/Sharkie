@@ -1,5 +1,8 @@
+/**
+ * Creats a FinalFish.
+ * @class
+ */
 class FinalFish extends MovableObject {
-
     height = 500;
     width = 500;
 
@@ -31,7 +34,6 @@ class FinalFish extends MovableObject {
         'assets/images/Enemies/Final-Enemy/2.floating/12.png',
         'assets/images/Enemies/Final-Enemy/2.floating/13.png',
     ];
-
     constructor() {
 
         super().loadImage('assets/images/Enemies/Final-Enemy/1.Introduce/1.png');

@@ -1,3 +1,7 @@
+/**
+ * creats Background
+ *@class
+ */
 class BackgroundObject extends MovableObject {
     x = 0;
     y = 0;
