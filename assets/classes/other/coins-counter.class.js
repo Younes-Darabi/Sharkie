@@ -20,9 +20,8 @@ class CoinsCounter extends DrawableObject {
     }
 
     setCoins(coins) {
-        this.coins = coins;
+        this.coins = coins*2.5;
         let num = Math.floor(this.coins / 10);
-        console.log(num);
         let path = this.IMAGES_COINS[num];
         this.img = this.imageCache[path];
     }

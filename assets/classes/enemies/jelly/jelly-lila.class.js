@@ -8,13 +8,13 @@ class JellyLila extends MovableObject {
         'assets/images/Enemies/Jelly/Lila/Lila4.png',
     ];
 
-    constructor() {
+    constructor(x) {
         super().loadImage('assets/images/Enemies/Jelly/Lila/Lila1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * 4000;
+        this.x = x;
         this.y = Math.random() * screenHeight;
-
+        
         this.animate();
     }
 

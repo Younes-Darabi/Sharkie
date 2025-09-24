@@ -22,7 +22,6 @@ class StatusBar extends DrawableObject {
     setPercentage(energy) {
         this.energy = energy;
         let num = Math.floor(this.energy / 10);
-        console.log(num);
         let path = this.IMAGES_ENERGY[num];
         this.img = this.imageCache[path];
     }

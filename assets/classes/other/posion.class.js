@@ -13,12 +13,12 @@ class Posion extends MovableObject {
 
     ];
 
-    constructor() {
+    constructor(x,y) {
         super().loadImage('assets/images/4.Marcadores/Posión/Animada/1.png');
         this.loadImages(this.IMAGES_POSION);
 
-        this.x = Math.random() * 4000;
-        this.y = 80 + Math.random() * screenHeight - 80;
+        this.x = x;
+        this.y = y;
 
         this.animate();
     }

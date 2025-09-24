@@ -1,13 +1,14 @@
 class Level {
-    enemies;
+    Jellys;
+    Puffers;
     coins;
     posions;
     backgroundObject;
     level_end_x = 700;
 
-    coins;
-    constructor(enemies, coins, posions, backgroundObject) {
-        this.enemies = enemies;
+    constructor(Jellys, Puffers, coins, posions, backgroundObject) {
+        this.Jellys = Jellys;
+        this.Puffers = Puffers;
         this.coins = coins;
         this.posions = posions;
         this.backgroundObject = backgroundObject;

@@ -8,11 +8,11 @@ class JellyYellow extends MovableObject {
         'assets/images/Enemies/Jelly/Yellow/Yellow4.png',
     ];
 
-    constructor() {
+    constructor(x) {
         super().loadImage('assets/images/Enemies/Jelly/Yellow/Yellow1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * 4000;
+        this.x = x;
         this.y = Math.random() * screenHeight;
 
         this.animate();

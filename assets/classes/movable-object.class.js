@@ -9,9 +9,20 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.y < mo.y + mo.height &&
             this.y + this.offset.y + this.offset.height > mo.y
     }
+    addToPosion() {
+        this.posions += 1;
+        console.log(this.posions);
+        
+    }
 
-    hit() {
+    addToCoins() {
+        this.coins += 1;
+        console.log(this.coins);
+    }
+
+    hit(enemyType) {
         this.energy -= 1;
+        this.enemyType = enemyType;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

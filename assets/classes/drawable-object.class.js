@@ -7,6 +7,8 @@ class DrawableObject {
     energy = 50;
     coins = 0;
     posions = 0;
+    enemyType = 'puffer';
+    status = true;
 
     loadImage(path) {
         this.img = new Image();

@@ -20,9 +20,8 @@ class PosionsCounter extends DrawableObject {
     }
 
     setPotions(posion) {
-        this.posion = posion;
+        this.posion = posion*3.4;
         let num = Math.floor(this.posion / 10);
-        console.log(num);
         let path = this.IMAGES_POTION[num];
         this.img = this.imageCache[path];
     }

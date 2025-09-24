@@ -5,6 +5,9 @@ body{
     justify-content: center;
     height: 100vh;
     margin: 0;
+    background-image: url('/assets/images/bg2.png');
+    background-size: cover;
+    background-position: center;
 }
 
 canvas{
