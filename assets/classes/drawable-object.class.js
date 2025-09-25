@@ -6,7 +6,7 @@ class DrawableObject {
     width = 150;
     energy = 50;
     coins = 0;
-    posions = 0;
+    poisons = 0;
     enemyType = 'puffer';
     status = true;
 
@@ -28,7 +28,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalFish || this instanceof Coin || this instanceof Posion) {
+        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalFish || this instanceof Coin || this instanceof Poison) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             // ctx.rect(this.x, this.y, this.width, this.height);

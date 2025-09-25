@@ -1,22 +1,28 @@
 class Sound {
     static BGMUSIC = new Audio('assets/sounds/bg-music.mp3')
     static COINSOUND = new Audio('assets/sounds/coin.mp3')
-    static POSIONSOUND = new Audio('assets/sounds/posion.mp3')
+    static POISONSOUND = new Audio('assets/sounds/poison.mp3')
     static ESHOCKSOUND = new Audio('assets/sounds/electric-shock.mp3')
     static HITSOUND = new Audio('assets/sounds/hit.mp3')
 
-    static allSounds = [Sound.BGMUSIC,Sound.COINSOUND,Sound.POSIONSOUND,Sound.ESHOCKSOUND,Sound.HITSOUND]
+    static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND]
 
+    static volume = true;
     static playOne(sound) {
-        sound.volume = 0;  // Setzt die Lautstärke auf 0.2 = 20% / 1 = 100%
-        sound.currentTime = 0;  // Startet ab einer bestimmten stelle (0=Anfang/ 5 = 5 sec.)
         sound.play();
+        Sound.allSounds.forEach(element => {
+            if (Sound.volume) {
+                element.volume = 0.2;
+            } else {
+                element.volume = 0.0;
+            }
+        });
     }
 
-    static pauseAll() {
-        this.allSounds.forEach(sound => {
-            sound.pause();
-            // sound.volume = 0;
-        });
+    static playBg(sound) {
+        if (sound.readyState == 4) sound.play();
+        setInterval(() => {
+            sound.play();
+        }, 47000);
     }
 }

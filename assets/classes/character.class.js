@@ -114,7 +114,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.world.keyboard.SPACE && !this.isAttacking) {
-                if (this.posions > 0) this.posions -= 1;
+                if (this.poisons > 0) this.poisons -= 1;
                 this.isAttacking = true;
                 this.currentImage = 0;
                 setTimeout(() => {

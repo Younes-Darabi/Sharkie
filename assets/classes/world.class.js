@@ -11,8 +11,7 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinsCounter = new CoinsCounter();
-    posionsCounter = new PosionsCounter();
-    volume = new Volume();
+    poisonsCounter = new PoisonsCounter();
     throwableObjects = [];
 
 
@@ -24,10 +23,7 @@ class World {
         this.setWorld();
         this.checkCollisions();
 
-        Sound.playOne(Sound.BGMUSIC);
-        setInterval(() => {
-            Sound.playOne(Sound.BGMUSIC);
-        }, 47000);
+        Sound.playBg(Sound.BGMUSIC);
     }
 
     setWorld() {
@@ -65,13 +61,13 @@ class World {
                     this.level.coins = this.level.coins.filter(c => c !== coin);
                 };
             });
-            this.level.posions.forEach((posion) => {
-                if (this.character.isColliding(posion)) {
-                    Sound.playOne(Sound.POSIONSOUND);
-                    this.character.addToPosion();
-                    this.posionsCounter.setPotions(this.character.posions);
+            this.level.poisons.forEach((poison) => {
+                if (this.character.isColliding(poison)) {
+                    Sound.playOne(Sound.POISONSOUND);
+                    this.character.addToPoison();
+                    this.poisonsCounter.setPotions(this.character.poisons);
 
-                    this.level.posions = this.level.posions.filter(p => p !== posion);
+                    this.level.poisons = this.level.poisons.filter(p => p !== poison);
                 };
             });
         }, 200);
@@ -86,15 +82,14 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsCounter);
-        this.addToMap(this.posionsCounter);
-        this.addToMap(this.volume);
+        this.addToMap(this.poisonsCounter);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.Jellys);
         this.addObjectsToMap(this.level.Puffers);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.posions);
+        this.addObjectsToMap(this.level.poisons);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);

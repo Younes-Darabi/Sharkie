@@ -9,15 +9,12 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.y < mo.y + mo.height &&
             this.y + this.offset.y + this.offset.height > mo.y
     }
-    addToPosion() {
-        this.posions += 1;
-        console.log(this.posions);
-        
+    addToPoison() {
+        this.poisons += 1;
     }
 
     addToCoins() {
         this.coins += 1;
-        console.log(this.coins);
     }
 
     hit(enemyType) {
@@ -56,7 +53,7 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed + 1;
-            this.x = this.x < -500 ? 5000 : this.x;
+            this.x = this.x < -800 ? 5000 : this.x;
         }, 1000 / 60)
     }
 

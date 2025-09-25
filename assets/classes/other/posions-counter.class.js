@@ -1,4 +1,4 @@
-class PosionsCounter extends DrawableObject {
+class PoisonsCounter extends DrawableObject {
 
     IMAGES_POTION = [
         'assets/images/4.Marcadores/Purple/0_.png',
@@ -19,9 +19,9 @@ class PosionsCounter extends DrawableObject {
         this.setPotions(0);
     }
 
-    setPotions(posion) {
-        this.posion = posion*3.4;
-        let num = Math.floor(this.posion / 10);
+    setPotions(poison) {
+        this.poison = poison*3.4;
+        let num = Math.floor(this.poison / 10);
         let path = this.IMAGES_POTION[num];
         this.img = this.imageCache[path];
     }

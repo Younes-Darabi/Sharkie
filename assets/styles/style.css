@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,28 @@ body{
     background-position: center;
 }
 
-canvas{
+canvas {
     background-color: black;
     border-radius: 5px;
+}
+
+div {
+    width: 1200px;
+    height: 680px;
+    position: absolute;
+}
+
+.volume_img {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume_img:hover {
+    scale: 1.05;
 }

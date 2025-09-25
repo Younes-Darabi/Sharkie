@@ -6,6 +6,12 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
+function volumeRender() {
+    Sound.volume = !Sound.volume;
+    let img = document.getElementById("volume-img");
+    img.src = Sound.volume ? 'assets/images/icons/volume.png': 'assets/images/icons/mute.png';
+}
+
 window.addEventListener('keydown', (e) => {
 
     if (e.keyCode == 37) {
@@ -53,3 +59,4 @@ window.addEventListener('keyup', (e) => {
     }
 
 });
+
