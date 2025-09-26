@@ -6,6 +6,8 @@ class Character extends MovableObject {
     world;
     speed = 1;
     isAttacking = false;
+    isLongIdle = false;
+    langCounter = 0;
 
     offset = {
         x: 90,
@@ -33,6 +35,24 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/1.IDLE/16.png',
         'assets/images/1.Sharkie/1.IDLE/17.png',
         'assets/images/1.Sharkie/1.IDLE/18.png',
+    ];
+
+    IMAGES_LONG_IDLE = [
+        'assets/images/1.Sharkie/2.Long_IDLE/i1.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I2.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I3.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I4.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I5.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I6.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I7.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I8.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I9.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I10.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I11.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I12.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I13.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I14.png',
+        'assets/images/1.Sharkie/2.Long_IDLE/I14.png',
     ];
 
     IMAGES_SWIMMING = [
@@ -90,6 +110,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURTJELLY);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_LONG_IDLE);
         this.animate();
     }
 
@@ -106,9 +127,18 @@ class Character extends MovableObject {
             }
             else if (this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.RIGHT || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
-            }
-            else {
+                this.isLongIdle = false;
+                this.langCounter = 0;
+            } else if (this.isLongIdle) {
+                this.playAnimation(this.IMAGES_LONG_IDLE)
+            } else {
                 this.playAnimation(this.IMAGES_IDLE);
+
+                this.langCounter++;
+                if (this.langCounter > 40) {
+                    this.isLongIdle = true;
+                    this.langCounter = 0;
+                }
             }
         }, 120)
 

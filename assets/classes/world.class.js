@@ -23,7 +23,7 @@ class World {
         this.setWorld();
         this.checkCollisions();
 
-        Sound.playBg(Sound.BGMUSIC);
+        if (Sound.volume) Sound.playBg(Sound.BGMUSIC);
     }
 
     setWorld() {
@@ -42,19 +42,19 @@ class World {
                 if (this.character.isColliding(puffer)) {
                     this.character.hit('puffer');
                     this.statusBar.setPercentage(this.character.energy);
-                    Sound.playOne(Sound.HITSOUND);
+                    if (Sound.volume) Sound.playOne(Sound.HITSOUND);
                 };
             });
             this.level.Jellys.forEach((jelly) => {
                 if (this.character.isColliding(jelly)) {
                     this.character.hit('jelly');
                     this.statusBar.setPercentage(this.character.energy);
-                    Sound.playOne(Sound.ESHOCKSOUND);
+                    if (Sound.volume) Sound.playOne(Sound.ESHOCKSOUND);
                 };
             });
             this.level.coins.forEach((coin) => {
                 if (this.character.isColliding(coin)) {
-                    Sound.playOne(Sound.COINSOUND);
+                    if (Sound.volume) Sound.playOne(Sound.COINSOUND);
                     this.character.addToCoins();
                     this.coinsCounter.setCoins(this.character.coins);
 
@@ -63,7 +63,7 @@ class World {
             });
             this.level.poisons.forEach((poison) => {
                 if (this.character.isColliding(poison)) {
-                    Sound.playOne(Sound.POISONSOUND);
+                    if (Sound.volume) Sound.playOne(Sound.POISONSOUND);
                     this.character.addToPoison();
                     this.poisonsCounter.setPotions(this.character.poisons);
 
@@ -91,6 +91,7 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.poisons);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.FinalEnemy);
 
         this.ctx.translate(-this.camera_x, 0);
 

@@ -8,21 +8,20 @@ class Sound {
     static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND]
 
     static volume = true;
+
     static playOne(sound) {
         sound.play();
-        Sound.allSounds.forEach(element => {
-            if (Sound.volume) {
-                element.volume = 0.2;
-            } else {
-                element.volume = 0.0;
-            }
-        });
+        sound.volume = 0.2;
     }
 
     static playBg(sound) {
-        if (sound.readyState == 4) sound.play();
+        if (sound.readyState == 4) {
+            sound.play();
+            sound.volume = 0.2;
+        }
         setInterval(() => {
             sound.play();
         }, 47000);
+
     }
 }

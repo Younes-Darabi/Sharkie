@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/icons/Sharkie.png">
+    <!-- <base href="/Sharkie/"> -->
     <base href="/">
+
     <title>Sharkie</title>
 
 
@@ -32,7 +34,7 @@
     <script src="assets/classes/other/background-object.class.js" defer></script>
     <script src="assets/classes/other/level.class.js" defer></script>
     <script src="assets/classes/other/throwable-object.class.js" defer></script>
-    <script src="assets/classes/enemies/final-fish.class.js" defer></script>
+    <script src="assets/classes/enemies/final-enemy.class.js" defer></script>
     <script src="assets/levels/level1.js" defer></script>
     <script src="assets/scripts/game.js" defer></script>
 
@@ -40,15 +42,18 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
-<body onload="init()">
+<body>
 
-    <canvas id="canvas" width="1200" height="680">
-    </canvas>
-
-    <div>
-        <img onclick="volumeRender()" id="volume-img" class="volume_img" src="assets/images/icons/volume.png">
+    <div class="gameScreen">
+        <canvas id="canvas" width="1200" height="680">
+        </canvas>
+        <img onclick="volumeRender()" id="volume_img" class="volume_img" src="assets/images/icons/volume.png">
+    </div>
+    <div id="game_menu" class="gameMenu">
+        <img onclick="init()" class="menu_img" src="assets/images/6.Botones/Start/4.png">
+        <img class="keyboard_img" src="assets/images/6.Botones/Instructions 2.png">
     </div>
 
 </body>
-w
+
 </html>

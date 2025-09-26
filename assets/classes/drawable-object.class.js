@@ -24,11 +24,16 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        } catch (error) {
+            console.warn('Error loading image', error);
+            console.log('Could not load image,',this.img.src)
+        }
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalFish || this instanceof Coin || this instanceof Poison) {
+        if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalEnemy || this instanceof Coin || this instanceof Poison) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             // ctx.rect(this.x, this.y, this.width, this.height);
