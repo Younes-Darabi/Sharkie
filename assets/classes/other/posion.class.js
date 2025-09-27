@@ -1,6 +1,15 @@
 class Poison extends MovableObject {
     height = 80;
     width = 55;
+    offset = {
+        left: 10,
+        top: 0,
+        right: 10,
+        bottom: 0,
+        width: 30,
+        height: 80,
+    };
+
     IMAGES_POISON = [
         'assets/images/4.Marcadores/Posión/Animada/1.png',
         'assets/images/4.Marcadores/Posión/Animada/2.png',
@@ -13,13 +22,11 @@ class Poison extends MovableObject {
 
     ];
 
-    constructor(x,y) {
+    constructor(x, y) {
         super().loadImage('assets/images/4.Marcadores/Posión/Animada/1.png');
         this.loadImages(this.IMAGES_POISON);
-
         this.x = x;
         this.y = y;
-
         this.animate();
     }
 

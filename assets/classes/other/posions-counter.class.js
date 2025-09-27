@@ -12,10 +12,10 @@ class PoisonsCounter extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES_POTION)
-        this.x = 10;
-        this.y = 80;
-        this.width = 170;
-        this.height = 55;
+        this.x = 0;
+        this.y = 60;
+        this.width = 150;
+        this.height = 45;
         this.setPotions(0);
     }
 

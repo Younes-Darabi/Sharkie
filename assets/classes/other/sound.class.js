@@ -18,10 +18,7 @@ class Sound {
         if (sound.readyState == 4) {
             sound.play();
             sound.volume = 0.2;
+            sound.loop = true;
         }
-        setInterval(() => {
-            sound.play();
-        }, 47000);
-
     }
 }

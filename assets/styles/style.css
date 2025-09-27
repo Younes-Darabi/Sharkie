@@ -18,11 +18,11 @@ canvas {
 
 .gameMenu {
     position: absolute;
-    background-image: url('/assets/images/bg2.png');
+    background-color: transparent;
     background-size: cover;
     background-position: center;
-    width: 1200px;
-    height: 680px;
+    width: 7200px;
+    height: 480px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -46,26 +46,57 @@ canvas {
     width: 700px;
 }
 
-.gameScreen {
+.game_screen {
+    display: none;
     position: absolute;
     background-color: brown;
-    width: 1200px;
-    height: 680px;
+    width: 720px;
+    height: 480px;
     border-radius: 5px;
 }
 
 .volume_img {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
+    top: 5px;
+    right: 40px;
+    width: 30px;
+    height: 30px;
     border: 1px solid white;
     border-radius: 50%;
     cursor: pointer;
 }
 
 .volume_img:hover {
+    scale: 1.05;
+}
+
+.pause_img {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pause_img:hover {
+    scale: 1.05;
+}
+
+.screen_img {
+    position: absolute;
+    top: 5px;
+    right: 75px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.screen_img:hover {
     scale: 1.05;
 }
 

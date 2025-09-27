@@ -3,10 +3,18 @@
  * @class
  */
 class FinalEnemy extends MovableObject {
-    height = 500;
-    width = 500;
+    height = 400;
+    width = 400;
     hadFirstContact = false;
-
+    offset = {
+        left: 30,
+        top: 200,
+        right:40,
+        bottom:80,
+        width: 330,
+        height: 120,
+    };
+    
     IMAGES_INTRODUCE = [
         'assets/images/Enemies/Final-Enemy/1.Introduce/1.png',
         'assets/images/Enemies/Final-Enemy/1.Introduce/2.png',
@@ -67,7 +75,7 @@ class FinalEnemy extends MovableObject {
         this.loadImages(this.IMAGES_FLOATING);
 
         this.x = 4200;
-        this.y = 0;
+        this.y = -50;
         this.animate();
     }
 

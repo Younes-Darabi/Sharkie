@@ -1,5 +1,5 @@
-let screenWidth = 1200;
-let screenHeight = 680;
+let screenWidth = 720;
+let screenHeight = 480;
 
 class World {
 
@@ -13,6 +13,8 @@ class World {
     coinsCounter = new CoinsCounter();
     poisonsCounter = new PoisonsCounter();
     throwableObjects = [];
+    gamePaused = false;
+    screenSize = false;
 
 
     constructor(canvas, keyboard) {
@@ -79,12 +81,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
 
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.coinsCounter);
-        this.addToMap(this.poisonsCounter);
-        this.ctx.translate(this.camera_x, 0);
-
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.Jellys);
         this.addObjectsToMap(this.level.Puffers);
@@ -92,6 +88,12 @@ class World {
         this.addObjectsToMap(this.level.poisons);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.FinalEnemy);
+
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.addToMap(this.coinsCounter);
+        this.addToMap(this.poisonsCounter);
+        this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -134,5 +136,4 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 }

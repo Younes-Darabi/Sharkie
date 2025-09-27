@@ -4,11 +4,16 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
     isColliding(mo) {
-        return this.x + this.offset.x < mo.x + mo.width &&
-            this.x + this.offset.x + this.offset.width > mo.x &&
-            this.y + this.offset.y < mo.y + mo.height &&
-            this.y + this.offset.y + this.offset.height > mo.y
+        return this.x + this.offset.left < mo.x + mo.offset.left + mo.offset.width &&
+            this.y + this.offset.top < mo.y +mo.offset.top + mo.offset.height &&
+            this.x + this.offset.left + this.offset.width > mo.x &&
+            this.y + this.offset.top + this.offset.height > mo.y
+        // return  this.x + this.offset.left < mo.x + mo.width &&
+        //         this.y + this.offset.top < mo.y + mo.height &&
+        //         this.x + this.offset.left + this.offset.width > mo.x &&
+        //         this.y + this.offset.top + this.offset.height > mo.y
     }
+    
     addToPoison() {
         this.poisons += 1;
     }
@@ -23,7 +28,7 @@ class MovableObject extends DrawableObject {
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.lastHit = new Date().getTime();   
+            this.lastHit = new Date().getTime();
         }
     }
 
@@ -63,5 +68,4 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
 }

@@ -1,6 +1,15 @@
 class JellyGreen extends MovableObject {
-    height = 80;
-    width = 80;
+    height = 70;
+    width = 70;
+    offset = {
+        left: 5,
+        top: 10,
+        right:5,
+        bottom:10,
+        width: 60,
+        height: 50,
+    };
+    
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Green/Green1.png',
         'assets/images/Enemies/Jelly/Green/Green2.png',
@@ -23,6 +32,7 @@ class JellyGreen extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 200)
+
     }
 
 }

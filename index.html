@@ -42,11 +42,13 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
-<body>
+<body onload="init()">
 
-    <div class="gameScreen">
-        <canvas id="canvas" width="1200" height="680">
+    <div id="game_screen" class="game_screen">
+        <canvas id="canvas" width="720" height="480">
         </canvas>
+        <img onclick="pauseRender()" id="pause_img" class="pause_img" src="assets/images/icons/pause.png">
+        <img onclick="screenRender()" id="screen_img" class="screen_img" src="assets/images/icons/fullscreen.png">
         <img onclick="volumeRender()" id="volume_img" class="volume_img" src="assets/images/icons/volume.png">
     </div>
     <div id="game_menu" class="gameMenu">

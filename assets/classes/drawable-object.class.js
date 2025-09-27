@@ -28,15 +28,15 @@ class DrawableObject {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         } catch (error) {
             console.warn('Error loading image', error);
-            console.log('Could not load image,',this.img.src)
+            console.log('Could not load image,', this.img.src)
         }
     }
 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalEnemy || this instanceof Coin || this instanceof Poison) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
-            // ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.lineWidth = '1';
+            // ctx.rect(this.x+5, this.y+10, this.width-10, this.height-20);
             // ctx.strokeStyle = 'blue';
             ctx.stroke();
         }

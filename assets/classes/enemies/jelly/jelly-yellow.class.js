@@ -1,7 +1,15 @@
 class JellyYellow extends MovableObject {
-    height = 80;
-    width = 80;
-    IMAGES_SWIMMING = [
+    height = 70;
+    width = 70;
+    offset = {
+        left: 5,
+        top: 10,
+        right:5,
+        bottom:10,
+        width: 60,
+        height: 50,
+    };
+        IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Yellow/Yellow1.png',
         'assets/images/Enemies/Jelly/Yellow/Yellow2.png',
         'assets/images/Enemies/Jelly/Yellow/Yellow3.png',

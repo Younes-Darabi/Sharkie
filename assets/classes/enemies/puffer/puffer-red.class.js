@@ -1,6 +1,15 @@
 class PufferRed extends MovableObject {
-    height = 70;
-    width = 70;
+    height = 60;
+    width = 60;
+    offset = {
+        left: 0,
+        top: 5,
+        right: 5,
+        bottom: 15,
+        width: 55,
+        height: 40,
+    };
+
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Puffer/Red/1.Swim/3.swim1.png',
         'assets/images/Enemies/Puffer/Red/1.Swim/3.swim2.png',
@@ -13,7 +22,7 @@ class PufferRed extends MovableObject {
         super().loadImage('assets/images/Enemies/Puffer/Red/1.Swim/3.swim1.png');
         this.loadImages(this.IMAGES_SWIMMING);
 
-        this.x = Math.random() * 5000;
+        this.x = 500 + Math.random() * 5000;
         this.y = Math.random() * (screenHeight - this.height);
 
         this.animate();

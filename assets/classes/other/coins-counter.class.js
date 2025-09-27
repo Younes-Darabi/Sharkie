@@ -12,10 +12,10 @@ class CoinsCounter extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES_COINS)
-        this.x = 10;
-        this.y = 40;
-        this.width = 170;
-        this.height = 50;
+        this.x = 0;
+        this.y = 25;
+        this.width = 150;
+        this.height = 45;
         this.setCoins(0);
     }
 

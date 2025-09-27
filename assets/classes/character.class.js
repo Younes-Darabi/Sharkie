@@ -1,8 +1,8 @@
 class Character extends MovableObject {
     x = 0;
-    y = 110;
-    height = 300;
-    width = 300;
+    y =80;
+    height = 250;
+    width = 250;
     world;
     speed = 1;
     isAttacking = false;
@@ -10,10 +10,12 @@ class Character extends MovableObject {
     langCounter = 0;
 
     offset = {
-        x: 90,
-        y: 170,
-        width: 145,
-        height: 55,
+        left: 50,
+        top: 125,
+        right: 50,
+        botoom: 65,
+        width: 150,
+        height: 60,
     };
 
     IMAGES_IDLE = [
@@ -156,16 +158,18 @@ class Character extends MovableObject {
                 this.otherDirection = true;
             }
             if (this.world.keyboard.UP) {
-                this.y = Math.max(-140, this.y - this.speed);
+                this.y = Math.max(-120, this.y - this.speed);
             }
             if (this.world.keyboard.RIGHT) {
-                this.x = Math.min(screenWidth * 3 + 200, this.x + this.speed);
+                this.x = Math.min(screenWidth * 6 , this.x + this.speed);
                 this.otherDirection = false;
             }
             if (this.world.keyboard.DOWN) {
-                this.y = Math.min(screenHeight - 240, this.y + this.speed);
+                this.y = Math.min(screenHeight - 200, this.y + this.speed);
             }
-            this.world.camera_x = -this.x + 200;
+            this.world.camera_x = -this.x + 50;
+            console.log(this.x);
+
         }, 1)
     }
 }
