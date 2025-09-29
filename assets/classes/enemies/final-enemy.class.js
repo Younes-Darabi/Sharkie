@@ -97,7 +97,7 @@ class FinalEnemy extends MovableObject {
                 this.playAnimation(this.IMAGES_FLOATING)
 
                 this.otherDirection = world.character.x > this.x ? true : false;
-                let speed = 20;
+                let speed = 15;
                 let dx = world.character.x - this.x;
                 let dy = world.character.y - this.y - 100;
                 if (dx > 10) {

@@ -4,7 +4,7 @@ class DrawableObject {
     currentImage = 0;
     height = 150;
     width = 150;
-    energy = 5;
+    energy = 50;
     finalEnemyEnergy = 50;
     finalEnemyAttak = false;
     coins = 0;

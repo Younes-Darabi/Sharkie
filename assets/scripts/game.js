@@ -1,5 +1,6 @@
 let canvas, world;
 let keyboard = new Keyboard();
+let soundStatus;
 
 function init() {
     Sound.playOne(Sound.CLICK);
@@ -21,17 +22,29 @@ function volumeRender() {
     } else {
         Sound.BGMUSIC.volume = 1;
         Sound.CLICK.volume = 1;
+        Sound.allSounds.forEach(sound => {
+            sound.volume = 1;
+        });
     };
 }
 
 function pauseRender() {
+    soundStatus = Sound.volume;
     Sound.playOne(Sound.CLICK);
+    World.gamePaused = true;
+    document.getElementById('game_paused').style.display = 'flex';
+    document.getElementById("pause_img").src = 'assets/images/icons/play.png';
     Sound.volume = true;
     volumeRender();
-    World.gamePaused = !World.gamePaused;
-    if (World.gamePaused) { document.getElementById('game_paused').style.display = 'flex' } else document.getElementById('game_paused').style.display = 'none';
-    let img = document.getElementById("pause_img");
-    img.src = World.gamePaused ? 'assets/images/icons/play.png' : 'assets/images/icons/pause.png';
+}
+
+function playGameRender() {
+    document.getElementById('game_paused').style.display = 'none';
+    document.getElementById("pause_img").src = 'assets/images/icons/pause.png';
+    Sound.playOne(Sound.CLICK);
+    World.gamePaused = false;
+    Sound.volume = !soundStatus;
+    volumeRender();
 }
 
 function screenRender() {

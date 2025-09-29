@@ -8,7 +8,7 @@ class Sound {
     static GAMEWIN = new Audio('assets/sounds/game-win.mp3');
     static CLICK = new Audio('assets/sounds/click.mp3');
 
-    static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND, Sound.GAMEOVER, Sound.GAMEWIN, Sound.CLICK]
+    static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND]
     static volume = true;
 
     //GAMEOVER counter
@@ -30,7 +30,7 @@ class Sound {
         this.allSounds.forEach(sound => {
             sound.volume = 0;
         });
-        if (this.counter) result.play();
+        if (this.counter && Sound.volume) result.play();
         this.counter = false;
     }
 

@@ -39,19 +39,29 @@ class World {
     }
 
     gameRestart() {
+        this.coinsCounter.setCoins(0);
+        this.poisonsCounter.setPotions(0);
+        this.statusBar.setPercentage(50);
         initLevel();
         this.level = level1;
         this.throwableObjects = [];
-        this.character.energy = 10;
+        this.character.energy = 50;
         this.character.finalEnemyEnergy = 50;
         this.character.x = -200;
         this.character.y = 80;
         World.gamePaused = false;
         document.getElementById('game_ended').style.display = 'none';
-        world.character.coins = 0;
-        world.character.poisons = 0;
+        World.character.coins = 0;
+        World.character.poisons = 0;
         this.coinsCounter = new CoinsCounter();
         this.poisonsCounter = new PoisonsCounter();
+        this.character.otherDirection = false;
+        if (Sound.volume) {
+            Sound.allSounds.forEach(sound => {
+                sound.volume = 1;
+            });
+        }
+        Sound.counter = true;
     }
 
     setWorld() {
