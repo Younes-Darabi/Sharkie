@@ -4,11 +4,11 @@ class DrawableObject {
     currentImage = 0;
     height = 150;
     width = 150;
-    energy = 50;
+    energy = 5;
+    finalEnemyEnergy = 50;
+    finalEnemyAttak = false;
     coins = 0;
     poisons = 0;
-    enemyType = 'puffer';
-    status = true;
 
     loadImage(path) {
         this.img = new Image();
@@ -36,7 +36,7 @@ class DrawableObject {
         if (this instanceof Character || this instanceof JellyGreen || this instanceof JellyPink || this instanceof JellyLila || this instanceof JellyYellow || this instanceof PufferGreen || this instanceof PufferOrange || this instanceof PufferRed || this instanceof FinalEnemy || this instanceof Coin || this instanceof Poison) {
             ctx.beginPath();
             ctx.lineWidth = '1';
-            // ctx.rect(this.x+5, this.y+10, this.width-10, this.height-20);
+            // ctx.rect(this.x, this.y, this.width, this.height);
             // ctx.strokeStyle = 'blue';
             ctx.stroke();
         }

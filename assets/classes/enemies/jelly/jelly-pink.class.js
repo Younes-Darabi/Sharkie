@@ -4,12 +4,12 @@ class JellyPink extends MovableObject {
     offset = {
         left: 5,
         top: 10,
-        right:5,
-        bottom:10,
+        right: 5,
+        bottom: 10,
         width: 60,
         height: 50,
     };
-    
+
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Pink/Pink1.png',
         'assets/images/Enemies/Jelly/Pink/Pink2.png',
@@ -23,13 +23,14 @@ class JellyPink extends MovableObject {
 
         this.x = x;
         this.y = Math.random() * screenHeight;
-        
+
         this.animate();
     }
 
     animate() {
         this.moveTopBottom();
         setInterval(() => {
+            if (World.gamePaused) return;
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 200)
     }

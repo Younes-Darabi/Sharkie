@@ -1,6 +1,6 @@
 class Character extends MovableObject {
-    x = 0;
-    y =80;
+    x = -200;
+    y = 80;
     height = 250;
     width = 250;
     world;
@@ -13,7 +13,7 @@ class Character extends MovableObject {
         left: 50,
         top: 125,
         right: 50,
-        botoom: 65,
+        bottom: 65,
         width: 150,
         height: 60,
     };
@@ -118,6 +118,7 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            if (World.gamePaused) return;
             if (this.isAttacking) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isDead()) {
@@ -145,6 +146,7 @@ class Character extends MovableObject {
         }, 120)
 
         setInterval(() => {
+            if (World.gamePaused) return;
             if (this.world.keyboard.SPACE && !this.isAttacking) {
                 if (this.poisons > 0) this.poisons -= 1;
                 this.isAttacking = true;
@@ -161,15 +163,13 @@ class Character extends MovableObject {
                 this.y = Math.max(-120, this.y - this.speed);
             }
             if (this.world.keyboard.RIGHT) {
-                this.x = Math.min(screenWidth * 6 , this.x + this.speed);
+                this.x = Math.min(screenWidth * 6, this.x + this.speed);
                 this.otherDirection = false;
             }
             if (this.world.keyboard.DOWN) {
                 this.y = Math.min(screenHeight - 200, this.y + this.speed);
             }
             this.world.camera_x = -this.x + 50;
-            console.log(this.x);
-
         }, 1)
     }
 }

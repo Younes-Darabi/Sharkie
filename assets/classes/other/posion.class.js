@@ -32,6 +32,7 @@ class Poison extends MovableObject {
 
     animate() {
         setInterval(() => {
+            if (World.gamePaused) return;
             let i = this.currentImage % this.IMAGES_POISON.length;
             let path = this.IMAGES_POISON[i];
             this.img = this.imageCache[path];

@@ -31,6 +31,7 @@ class PufferGreen extends MovableObject {
     animate() {
         this.moveLeft();
         setInterval(() => {
+            if (World.gamePaused) return;
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 100)
     }

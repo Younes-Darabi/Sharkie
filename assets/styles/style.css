@@ -5,7 +5,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-image: url('/assets/images/bg2.png');
+    background-image: url('../images/bg2.png');
     background-size: cover;
     background-position: center;
 }
@@ -21,7 +21,7 @@ canvas {
     background-color: transparent;
     background-size: cover;
     background-position: center;
-    width: 7200px;
+    width: 720px;
     height: 480px;
     border-radius: 5px;
     display: flex;
@@ -42,7 +42,7 @@ canvas {
     scale: 1.1;
 }
 
-.keyboard_img{
+.keyboard_img {
     width: 700px;
 }
 
@@ -100,15 +100,60 @@ canvas {
     scale: 1.05;
 }
 
+.game_paused {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.301);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+}
+
+.game_paused img {
+    height: 50px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.game_paused img:hover {
+    scale: 1.1;
+}
+
+.game_ended {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.301);
+    background-position: center;
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.game_over {
+    width: 500px;
+    margin-bottom: 50px;
+}
+
+.div_tryagain{
+    display: flex;
+    gap: 20px;
+}
+
 /* Smartphones*/
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:720px) {
     canvas {
         width: 100%;
     }
 }
 
 /* Smartphones*/
-@media only screen and (max-width:680px) {
+@media only screen and (max-width:480px) {
     canvas {
         width: 100%;
     }

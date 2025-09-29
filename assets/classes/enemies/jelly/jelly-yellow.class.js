@@ -29,6 +29,7 @@ class JellyYellow extends MovableObject {
     animate() {
         this.moveTopBottom();
         setInterval(() => {
+            if (World.gamePaused) return;
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 200)
     }

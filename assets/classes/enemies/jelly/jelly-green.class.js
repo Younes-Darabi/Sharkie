@@ -4,12 +4,12 @@ class JellyGreen extends MovableObject {
     offset = {
         left: 5,
         top: 10,
-        right:5,
-        bottom:10,
+        right: 5,
+        bottom: 10,
         width: 60,
         height: 50,
     };
-    
+
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Green/Green1.png',
         'assets/images/Enemies/Jelly/Green/Green2.png',
@@ -30,6 +30,7 @@ class JellyGreen extends MovableObject {
     animate() {
         this.moveTopBottom();
         setInterval(() => {
+            if (World.gamePaused) return;
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 200)
 

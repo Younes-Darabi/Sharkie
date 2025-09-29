@@ -2,7 +2,6 @@ let screenWidth = 720;
 let screenHeight = 480;
 
 class World {
-
     character = new Character();
     level = level1;
     canvas;
@@ -16,7 +15,6 @@ class World {
     gamePaused = false;
     screenSize = false;
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -24,8 +22,36 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
-
         if (Sound.volume) Sound.playBg(Sound.BGMUSIC);
+        this.gameEndedCheck();
+    }
+
+    gameEndedCheck() {
+        setInterval(() => {
+            if (this.character.energy == 0 || this.character.finalEnemyEnergy == 0) {
+                if (this.character.energy > 0) { Sound.gameEnded(Sound.GAMEWIN) } else Sound.gameEnded(Sound.GAMEOVER);
+                World.gamePaused = true;
+                document.getElementById('game_ended').style.display = 'flex';
+                let img = document.getElementById("game_over");
+                img.src = this.character.energy > 0 ? 'assets/images/6.Botones/Tittles/You-win/Recurso19.png' : 'assets/images/6.Botones/Tittles/Game-Over/Recurso10.png';
+            }
+        }, 1000);
+    }
+
+    gameRestart() {
+        initLevel();
+        this.level = level1;
+        this.throwableObjects = [];
+        this.character.energy = 10;
+        this.character.finalEnemyEnergy = 50;
+        this.character.x = -200;
+        this.character.y = 80;
+        World.gamePaused = false;
+        document.getElementById('game_ended').style.display = 'none';
+        world.character.coins = 0;
+        world.character.poisons = 0;
+        this.coinsCounter = new CoinsCounter();
+        this.poisonsCounter = new PoisonsCounter();
     }
 
     setWorld() {
@@ -40,6 +66,17 @@ class World {
                     this.throwableObjects.push(bobble);
                 }, 800);
             }
+
+
+
+            if (this.character.isColliding(this.level.FinalEnemy[0])) {
+                this.character.hit('puffer');
+                this.statusBar.setPercentage(this.character.energy);
+                if (Sound.volume) Sound.playOne(Sound.HITSOUND);
+            };
+
+
+
             this.level.Puffers.forEach((puffer) => {
                 if (this.character.isColliding(puffer)) {
                     this.character.hit('puffer');
@@ -81,13 +118,13 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
 
-        this.addToMap(this.character);
         this.addObjectsToMap(this.level.Jellys);
         this.addObjectsToMap(this.level.Puffers);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.poisons);
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.FinalEnemy);
+        this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);

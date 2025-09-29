@@ -11,6 +11,7 @@ class ThrowableObject extends MovableObject {
     }
 
     trow() {
+        if (World.gamePaused) return;
         setInterval(() => {
             this.x += 10;
         }, 25);

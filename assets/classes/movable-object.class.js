@@ -4,16 +4,14 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
     isColliding(mo) {
-        return this.x + this.offset.left < mo.x + mo.offset.left + mo.offset.width &&
-            this.y + this.offset.top < mo.y +mo.offset.top + mo.offset.height &&
-            this.x + this.offset.left + this.offset.width > mo.x &&
-            this.y + this.offset.top + this.offset.height > mo.y
-        // return  this.x + this.offset.left < mo.x + mo.width &&
-        //         this.y + this.offset.top < mo.y + mo.height &&
-        //         this.x + this.offset.left + this.offset.width > mo.x &&
-        //         this.y + this.offset.top + this.offset.height > mo.y
+        return (
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
+        );
     }
-    
+
     addToPoison() {
         this.poisons += 1;
     }
@@ -45,6 +43,7 @@ class MovableObject extends DrawableObject {
     moveTopBottom() {
         let direction = 1;
         setInterval(() => {
+            if (World.gamePaused) return;
             this.y += this.speed + 2 * direction;
 
             if (this.y <= 0) {
@@ -57,6 +56,7 @@ class MovableObject extends DrawableObject {
 
     moveLeft() {
         setInterval(() => {
+            if (World.gamePaused) return;
             this.x -= this.speed + 1;
             this.x = this.x < -800 ? 5000 : this.x;
         }, 1000 / 60)

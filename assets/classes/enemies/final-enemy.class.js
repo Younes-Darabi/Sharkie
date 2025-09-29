@@ -9,12 +9,12 @@ class FinalEnemy extends MovableObject {
     offset = {
         left: 30,
         top: 200,
-        right:40,
-        bottom:80,
-        width: 330,
+        right: 40,
+        bottom: 80,
+        width: 230,
         height: 120,
     };
-    
+
     IMAGES_INTRODUCE = [
         'assets/images/Enemies/Final-Enemy/1.Introduce/1.png',
         'assets/images/Enemies/Final-Enemy/1.Introduce/2.png',
@@ -81,25 +81,36 @@ class FinalEnemy extends MovableObject {
 
     animate() {
         let i = 0;
-
         setInterval(() => {
+            if (World.gamePaused) return;
             if (world.character.x > 3500) this.hadFirstContact = true;
             if (i < 10 && this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_INTRODUCE);
                 i++;
-            } else if (this.hadFirstContact) {
+
+            }
+            //  else if (this.finalEnemyhit) {
+            //     this.playAnimation(this.IMAGES_ATTACK)
+
+            // }
+            else if (this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_FLOATING)
-            };
 
-            // let dx = world.character.x - this.x;
-            // let dy = world.character.y - this.y;
-
-            // let speed = 20; // سرعت حرکت باس
-            // if (dx > 5) this.x += speed;  // حرکت به راست
-            // else if (dx < -5) this.x -= speed; // حرکت به چپ
-
-            // if (dy > 5) this.y += speed;  // حرکت به پایین
-            // else if (dy < -5) this.y -= speed; // حرکت به بالا
+                this.otherDirection = world.character.x > this.x ? true : false;
+                let speed = 20;
+                let dx = world.character.x - this.x;
+                let dy = world.character.y - this.y - 100;
+                if (dx > 10) {
+                    this.x += speed; // right
+                } else if (dx < -10) {
+                    this.x -= speed; // left
+                }
+                if (dy > 10) {
+                    this.y += speed; //bottom
+                } else if (dy < -10) {
+                    this.y -= speed; //top
+                }
+            };;
 
         }, 140)
     }

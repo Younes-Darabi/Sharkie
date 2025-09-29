@@ -29,6 +29,7 @@ class Coin extends MovableObject {
 
     animate() {
         setInterval(() => {
+            if (World.gamePaused) return;
             let i = this.currentImage % this.IMAGES_COIN.length;
             let path = this.IMAGES_COIN[i];
             this.img = this.imageCache[path];

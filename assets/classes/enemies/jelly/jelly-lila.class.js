@@ -31,7 +31,7 @@ class JellyLila extends MovableObject {
     animate() {
         this.moveTopBottom();
         setInterval(() => {
-            // if (World.gamePaused) return;
+            if (World.gamePaused) return;
             this.playAnimation(this.IMAGES_SWIMMING);
         }, 200)
     }
