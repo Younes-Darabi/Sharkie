@@ -20,6 +20,14 @@ class MovableObject extends DrawableObject {
         this.coins += 1;
     }
 
+    resetCPEcounter() {
+        this.poisons = 0;
+        this.coins = 0;
+        this.energy = 50;
+        this.finalEnemyEnergy = 50;
+        this.otherDirection = false;
+    }
+
     hit(enemyType) {
         this.energy -= 1;
         this.enemyType = enemyType;

@@ -13,7 +13,6 @@ class World {
     poisonsCounter = new PoisonsCounter();
     throwableObjects = [];
     gamePaused = false;
-    screenSize = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -28,6 +27,7 @@ class World {
 
     gameEndedCheck() {
         setInterval(() => {
+            if (World.gamePaused) return;
             if (this.character.energy == 0 || this.character.finalEnemyEnergy == 0) {
                 if (this.character.energy > 0) { Sound.gameEnded(Sound.GAMEWIN) } else Sound.gameEnded(Sound.GAMEOVER);
                 World.gamePaused = true;
@@ -39,23 +39,17 @@ class World {
     }
 
     gameRestart() {
-        this.coinsCounter.setCoins(0);
-        this.poisonsCounter.setPotions(0);
-        this.statusBar.setPercentage(50);
         initLevel();
         this.level = level1;
         this.throwableObjects = [];
-        this.character.energy = 50;
-        this.character.finalEnemyEnergy = 50;
-        this.character.x = -200;
+        this.character.x = -100;
         this.character.y = 80;
         World.gamePaused = false;
         document.getElementById('game_ended').style.display = 'none';
-        World.character.coins = 0;
-        World.character.poisons = 0;
-        this.coinsCounter = new CoinsCounter();
-        this.poisonsCounter = new PoisonsCounter();
-        this.character.otherDirection = false;
+        this.character.resetCPEcounter();
+        this.coinsCounter.setCoins(0);
+        this.poisonsCounter.setPotions(0);
+        this.statusBar.setPercentage(50);
         if (Sound.volume) {
             Sound.allSounds.forEach(sound => {
                 sound.volume = 1;
@@ -70,23 +64,22 @@ class World {
 
     checkCollisions() {
         setInterval(() => {
+            if (World.gamePaused) return;
+
             if (this.keyboard.SPACE) {
                 setTimeout(() => {
                     let bobble = new ThrowableObject(this.character.x, this.character.y);
                     this.throwableObjects.push(bobble);
                 }, 800);
             }
-
-
-
             if (this.character.isColliding(this.level.FinalEnemy[0])) {
                 this.character.hit('puffer');
                 this.statusBar.setPercentage(this.character.energy);
                 if (Sound.volume) Sound.playOne(Sound.HITSOUND);
+                this.character.finalEnemyAttak = true;
+            } else {
+                this.character.finalEnemyAttak = false;
             };
-
-
-
             this.level.Puffers.forEach((puffer) => {
                 if (this.character.isColliding(puffer)) {
                     this.character.hit('puffer');

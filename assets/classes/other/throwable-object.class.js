@@ -5,15 +5,15 @@ class ThrowableObject extends MovableObject {
         super().loadImage('assets/images/1.Sharkie/4.Attack/Bubble-trap/Bubble.png');
         this.width = 30;
         this.height = 30,
-        this.x = x + 250;
-        this.y = y + 165;
-        this.trow(); 
+        this.x = x + 200;
+        this.y = y + 140;
+        this.trow();
     }
 
     trow() {
-        if (World.gamePaused) return;
         setInterval(() => {
-            this.x += 10;
+            if (World.gamePaused) return;
+            if (world.character.otherDirection) {this.x -= 10} else  this.x += 10;
         }, 25);
     }
 }

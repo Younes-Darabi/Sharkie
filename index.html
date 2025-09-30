@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 
+</html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,36 +45,34 @@
 </head>
 
 <body>
-
-    <div id="game_screen" class="game_screen">
         <canvas id="canvas" width="720" height="480">
         </canvas>
-        <img onclick="pauseRender()" id="pause_img" class="pause_img" src="assets/images/icons/pause.png">
-        <img onclick="screenRender()" id="screen_img" class="screen_img" src="assets/images/icons/fullscreen.png">
-        <img onclick="volumeRender()" id="volume_img" class="volume_img" src="assets/images/icons/volume.png">
-    </div>
-    <div id="game_menu" class="gameMenu">
-        <img onclick="init()" class="menu_img" src="assets/images/6.Botones/Start/4.png">
-        <img class="keyboard_img" src="assets/images/6.Botones/Instructions 2.png">
-    </div>
-    <div class="game_paused" id="game_paused">
-        <img onclick="playGameRender()" src="assets/images/icons/paused.png">
-    </div>
-    <div class="game_ended" id="game_ended">
-        <img id="game_over" class="game_over" src="assets/images/6.Botones/Tittles/Game-Over/Recurso10.png">
-        <div class="div_tryagain">
-            <img onclick="world.gameRestart()" class="menu_img"
-                src="assets/images/6.Botones/Try again/Recurso 18.png">
-            <img onclick="menuRender()" class="menu_img" src="assets/images/6.Botones/Start/5.png">
+        <div id="game_screen" class="game_screen">
+            <img onclick="pauseRender()" id="pause_img" class="pause_img" src="assets/images/icons/pause.png">
+            <img onclick="FullScreenRender()" id="screen_img" class="screen_img"
+                src="assets/images/icons/fullscreen.png">
+            <img onclick="world.gameRestart()" id="restart_img" class="restart_img"
+                src="assets/images/icons/restart.png">
+            <img onclick="volumeRender()" id="volume_img" class="volume_img" src="assets/images/icons/volume.png">
         </div>
-        <!-- <img onclick="gameEndedRender()" src="assets/images/6.Botones/Tittles/You win/Recurso 19.png"> -->
-    </div>
-    <!-- <div class="game_ended" id="game_ended">
-        <img onclick="gameEndedRender()" src="assets/images/6.Botones/Try again/Recurso 18.png">
-        <img onclick="gameEndedRender()" src="assets/images/6.Botones/Try again/Mesa de trabajo 1.png">
-        <img onclick="gameEndedRender()" src="assets/images/6.Botones/Tittles/Game Over/Recurso 10.png">
-    </div> -->
-
+        <div id="game_menu" class="game_menu">
+            <img onclick="init()" class="menu_img" src="assets/images/6.Botones/Start/4.png">
+            <img class="keyboard_img" src="assets/images/6.Botones/Instructions 2.png">
+        </div>
+        <div class="game_paused" id="game_paused">
+            <img onclick="playGameRender()" src="assets/images/icons/paused.png">
+            <a href="index.html">
+                <img class="menu_img" src="assets/images/6.Botones/Start/5.png" alt="Start">
+            </a>
+        </div>
+        <div class="game_ended" id="game_ended">
+            <img id="game_over" class="game_over" src="assets/images/6.Botones/Tittles/Game-Over/Recurso10.png">
+            <div class="div_tryagain">
+                <img onclick="world.gameRestart()" class="menu_img"
+                    src="assets/images/6.Botones/Try again/Recurso 18.png">
+                <img onclick="menuRender()" class="menu_img" src="assets/images/6.Botones/Start/5.png">
+            </div>
+        </div>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ class FinalEnemy extends MovableObject {
         width: 230,
         height: 120,
     };
+    i = 0;
 
     IMAGES_INTRODUCE = [
         'assets/images/Enemies/Final-Enemy/1.Introduce/1.png',
@@ -73,7 +74,7 @@ class FinalEnemy extends MovableObject {
         super().loadImage(this.IMAGES_INTRODUCE[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_FLOATING);
-
+        this.loadImages(this.IMAGES_ATTACK);
         this.x = 4200;
         this.y = -50;
         this.animate();
@@ -87,28 +88,27 @@ class FinalEnemy extends MovableObject {
             if (i < 10 && this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_INTRODUCE);
                 i++;
-
             }
-            //  else if (this.finalEnemyhit) {
-            //     this.playAnimation(this.IMAGES_ATTACK)
-
-            // }
+            else if (world.character.finalEnemyAttak) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            }
             else if (this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_FLOATING)
 
                 this.otherDirection = world.character.x > this.x ? true : false;
-                let speed = 15;
+                let xspeed = 20;
+                let yspeed = 10;
                 let dx = world.character.x - this.x;
                 let dy = world.character.y - this.y - 100;
                 if (dx > 10) {
-                    this.x += speed; // right
+                    this.x += xspeed; // right
                 } else if (dx < -10) {
-                    this.x -= speed; // left
+                    this.x -= xspeed; // left
                 }
                 if (dy > 10) {
-                    this.y += speed; //bottom
+                    this.y += yspeed; //bottom
                 } else if (dy < -10) {
-                    this.y -= speed; //top
+                    this.y -= yspeed; //top
                 }
             };;
 

@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-    x = -200;
+    x = -100;
     y = 80;
     height = 250;
     width = 250;
@@ -169,7 +169,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.DOWN) {
                 this.y = Math.min(screenHeight - 200, this.y + this.speed);
             }
-            this.world.camera_x = -this.x + 50;
+            this.world.camera_x = -this.x + 100;
         }, 1)
     }
 }
