@@ -35,10 +35,11 @@ class World {
                 let img = document.getElementById("game_over");
                 img.src = this.character.energy > 0 ? 'assets/images/6.Botones/Tittles/You-win/Recurso19.png' : 'assets/images/6.Botones/Tittles/Game-Over/Recurso10.png';
             }
-        }, 1000);
+        }, 2000);
     }
 
     gameRestart() {
+        Sound.playOne(Sound.CLICK);
         initLevel();
         this.level = level1;
         this.throwableObjects = [];
@@ -62,16 +63,25 @@ class World {
         this.character.world = this;
     };
 
+    bubbleShooter() {
+        if (this.keyboard.SPACE && !this.character.throwCooldown && this.character.poisons > 0) {
+            setTimeout(() => {
+                let bobble = new ThrowableObject(this.character.x, this.character.y);
+                this.throwableObjects.push(bobble);
+                this.character.throwCooldown = true;
+            }, 800);
+            setTimeout(() => {
+                this.character.throwCooldown = false;
+                this.character.removeFromPoison();
+            }, 2000);
+        }
+    }
+
     checkCollisions() {
+
         setInterval(() => {
             if (World.gamePaused) return;
 
-            if (this.keyboard.SPACE) {
-                setTimeout(() => {
-                    let bobble = new ThrowableObject(this.character.x, this.character.y);
-                    this.throwableObjects.push(bobble);
-                }, 800);
-            }
             if (this.character.isColliding(this.level.FinalEnemy[0])) {
                 this.character.hit('puffer');
                 this.statusBar.setPercentage(this.character.energy);
@@ -86,6 +96,11 @@ class World {
                     this.statusBar.setPercentage(this.character.energy);
                     if (Sound.volume) Sound.playOne(Sound.HITSOUND);
                 };
+
+                // if (this.throwableObjects[0].isColliding(puffer)){
+                //     console.log('hi');
+                // }
+
             });
             this.level.Jellys.forEach((jelly) => {
                 if (this.character.isColliding(jelly)) {

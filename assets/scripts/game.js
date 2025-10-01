@@ -73,13 +73,6 @@ function FullScreenRender() {
     }
 }
 
-function menuRender() {
-    pauseRender();
-    document.getElementById('game_menu').style.display = 'flex';
-    document.getElementById('game_screen').style.display = 'none';
-    document.getElementById('game_ended').style.display = 'none';
-}
-
 window.addEventListener('keydown', (e) => {
 
     if (e.keyCode == 37) {

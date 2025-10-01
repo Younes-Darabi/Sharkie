@@ -13,11 +13,17 @@ class MovableObject extends DrawableObject {
     }
 
     addToPoison() {
-        this.poisons += 1;
+        this.poisons++;
+        console.log(this.poisons);
+    }
+
+    removeFromPoison() {
+        this.poisons--;
+        console.log(this.poisons);
     }
 
     addToCoins() {
-        this.coins += 1;
+        this.coins++;
     }
 
     resetCPEcounter() {

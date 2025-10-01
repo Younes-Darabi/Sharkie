@@ -9,6 +9,7 @@ class DrawableObject {
     finalEnemyAttak = false;
     coins = 0;
     poisons = 0;
+    throwCooldown = false;
 
     loadImage(path) {
         this.img = new Image();

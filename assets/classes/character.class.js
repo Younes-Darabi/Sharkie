@@ -118,8 +118,9 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            console.log(this.poisons);
             if (World.gamePaused) return;
-            if (this.isAttacking) {
+            if (this.isAttacking &&  this.poisons>0) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -154,6 +155,7 @@ class Character extends MovableObject {
                 setTimeout(() => {
                     this.isAttacking = false;
                 }, this.IMAGES_ATTACK.length * 130);
+                world.bubbleShooter();
             }
             if (this.world.keyboard.LEFT) {
                 this.x = Math.max(-500, this.x - this.speed);
