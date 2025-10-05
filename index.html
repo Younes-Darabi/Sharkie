@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 
-</html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +27,7 @@
     <script src="assets/classes/other/coin.class.js" defer></script>
     <script src="assets/classes/other/posion.class.js" defer></script>
     <script src="assets/classes/other/status-bar.class.js" defer></script>
+    <script src="assets/classes/other/finall-enemy-sb.class.js" defer></script>
     <script src="assets/classes/other/coins-counter.class.js" defer></script>
     <script src="assets/classes/other/posions-counter.class.js" defer></script>
     <script src="assets/classes/other/sound.class.js" defer></script>
@@ -47,15 +46,34 @@
 <body>
     <canvas id="canvas" width="720" height="480">
     </canvas>
+
     <div id="game_screen" class="game_screen">
-        <img onclick="pauseRender()" id="pause_img" class="pause_img" src="assets/images/icons/pause.png">
-        <img onclick="FullScreenRender()" id="screen_img" class="screen_img" src="assets/images/icons/fullscreen.png">
-        <img onclick="world.gameRestart()" id="restart_img" class="restart_img" src="assets/images/icons/restart.png">
-        <img onclick="volumeRender()" id="volume_img" class="volume_img" src="assets/images/icons/volume.png">
+        <div class="screen_top">
+            <img onclick="world.gameRestart()" id="restart_img" class="screen_img"
+                src="assets/images/icons/restart.png">
+            <img onclick="FullScreenRender()" id="screen_img" class="screen_img"
+                src="assets/images/icons/fullscreen.png">
+            <img onclick="volumeRender()" id="volume_img" class="screen_img" src="assets/images/icons/volume.png">
+            <img onclick="pauseRender()" id="pause_img" class="screen_img" src="assets/images/icons/pause.png">
+        </div>
+        <div class="screen_bottom">
+            <div class="top_bottom_div">
+                <img id="button_up" class="responsive_button" src="assets/images/6.Botones/Key/top.png">
+                <img id="button_bobble" class="responsive_button" src="assets/images/6.Botones/Key/bobble.png">
+                <img id="button_down" class="responsive_button" src="assets/images/6.Botones/Key/bottom.png">
+
+            </div>
+            <div>
+                <img id="button_left" class="responsive_button" src="assets/images/6.Botones/Key/left.png">
+                <img id="button_right" class="responsive_button" src="assets/images/6.Botones/Key/right.png">
+            </div>
+        </div>
     </div>
+
     <div id="game_menu" class="game_menu">
         <img onclick="init()" class="menu_img" src="assets/images/6.Botones/Start/4.png">
         <img class="keyboard_img" src="assets/images/6.Botones/Instructions 2.png">
+        <a href="impressum.html" target="_blank">Impressum</a>
     </div>
     <div class="game_paused" id="game_paused">
         <img onclick="playGameRender()" src="assets/images/icons/paused.png">
