@@ -9,6 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    finalEnemySB = new FinalEnemySB();
     coinsCounter = new CoinsCounter();
     poisonsCounter = new PoisonsCounter();
     throwableObjects = [];
@@ -28,7 +29,7 @@ class World {
     gameEndedCheck() {
         setInterval(() => {
             if (World.gamePaused) return;
-            if (this.character.energy == 0 || this.character.finalEnemyEnergy == 0) {
+            if (this.character.energy == 0 || this.finalEnemySB.finalEnemyEnergy == 0) {
                 if (this.character.energy > 0) { Sound.gameEnded(Sound.GAMEWIN) } else Sound.gameEnded(Sound.GAMEOVER);
                 World.gamePaused = true;
                 document.getElementById('game_ended').style.display = 'flex';
@@ -51,12 +52,15 @@ class World {
         this.coinsCounter.setCoins(0);
         this.poisonsCounter.setPotions(0);
         this.statusBar.setPercentage(50);
+        this.finalEnemySB.setPercentage(50);
         if (Sound.volume) {
             Sound.allSounds.forEach(sound => {
                 sound.volume = 1;
             });
         }
         Sound.counter = true;
+        world.finalEnemySB.width = 0;
+        world.finalEnemySB.height = 0;
     }
 
     setWorld() {
@@ -65,70 +69,121 @@ class World {
 
     bubbleShooter() {
         if (this.keyboard.SPACE && !this.character.throwCooldown && this.character.poisons > 0) {
+            this.character.removeFromPoison();
+            this.character.throwCooldown = true;
+
             setTimeout(() => {
-                let bobble = new ThrowableObject(this.character.x, this.character.y);
+                let bobble;
+                if (this.character.otherDirection) {
+                    bobble = new ThrowableObject(this.character.x - 160, this.character.y);
+                } else {
+                    bobble = new ThrowableObject(this.character.x, this.character.y);
+                }
                 this.throwableObjects.push(bobble);
-                this.character.throwCooldown = true;
+                Sound.playOne(Sound.BUBBLE);
+
+                setTimeout(() => {
+                    this.throwableObjects = this.throwableObjects.filter(b => b !== bobble);
+                }, 900);
+
+                setTimeout(() => {
+                    this.character.throwCooldown = false;
+                }, 1700);
+
             }, 800);
-            setTimeout(() => {
-                this.character.throwCooldown = false;
-                this.character.removeFromPoison();
-            }, 2000);
         }
     }
 
-    checkCollisions() {
 
+    checkCollisions() {
         setInterval(() => {
             if (World.gamePaused) return;
+            this.finalEnemyCheckCollisions();
+            this.pufferCheckCollisions();
+            this.jellyCheckCollisions();
+            this.coinCheckCollisions();
+            this.poisonCheckCollisions();
+        }, 200);
+    }
 
-            if (this.character.isColliding(this.level.FinalEnemy[0])) {
+    finalEnemyCheckCollisions() {
+        if (this.character.isColliding(this.level.FinalEnemy[0])) {
+            this.character.hit('puffer');
+            this.statusBar.setPercentage(this.character.energy);
+            if (Sound.volume) Sound.playOne(Sound.HITSOUND);
+            this.character.finalEnemyAttak = true;
+        } else {
+            this.character.finalEnemyAttak = false;
+        };
+        this.throwableObjects.forEach((bobble) => {
+            if (bobble.isColliding(this.level.FinalEnemy[0])) {
+                this.level.FinalEnemy[0].finalEnemyHit();
+                this.throwableObjects = this.throwableObjects.filter(b => b !== bobble);
+            };
+        });
+    }
+
+    pufferCheckCollisions() {
+        this.level.Puffers.forEach((puffer) => {
+            if (this.character.isColliding(puffer)) {
                 this.character.hit('puffer');
                 this.statusBar.setPercentage(this.character.energy);
                 if (Sound.volume) Sound.playOne(Sound.HITSOUND);
-                this.character.finalEnemyAttak = true;
-            } else {
-                this.character.finalEnemyAttak = false;
             };
-            this.level.Puffers.forEach((puffer) => {
-                if (this.character.isColliding(puffer)) {
-                    this.character.hit('puffer');
-                    this.statusBar.setPercentage(this.character.energy);
-                    if (Sound.volume) Sound.playOne(Sound.HITSOUND);
-                };
-
-                // if (this.throwableObjects[0].isColliding(puffer)){
-                //     console.log('hi');
-                // }
-
+            this.throwableObjects.forEach((bobble) => {
+                if (bobble.isColliding(puffer)) {
+                    puffer.dead++;
+                    if (puffer.dead == 3) {
+                        setTimeout(() => {
+                            this.level.Puffers = this.level.Puffers.filter(p => p !== puffer);
+                        }, 300);
+                    };
+                    this.throwableObjects = this.throwableObjects.filter(b => b !== bobble);
+                }
             });
-            this.level.Jellys.forEach((jelly) => {
-                if (this.character.isColliding(jelly)) {
-                    this.character.hit('jelly');
-                    this.statusBar.setPercentage(this.character.energy);
-                    if (Sound.volume) Sound.playOne(Sound.ESHOCKSOUND);
-                };
-            });
-            this.level.coins.forEach((coin) => {
-                if (this.character.isColliding(coin)) {
-                    if (Sound.volume) Sound.playOne(Sound.COINSOUND);
-                    this.character.addToCoins();
-                    this.coinsCounter.setCoins(this.character.coins);
-
-                    this.level.coins = this.level.coins.filter(c => c !== coin);
-                };
-            });
-            this.level.poisons.forEach((poison) => {
-                if (this.character.isColliding(poison)) {
-                    if (Sound.volume) Sound.playOne(Sound.POISONSOUND);
-                    this.character.addToPoison();
-                    this.poisonsCounter.setPotions(this.character.poisons);
-
-                    this.level.poisons = this.level.poisons.filter(p => p !== poison);
-                };
-            });
-        }, 200);
+        });
     }
+
+    jellyCheckCollisions() {
+        this.level.Jellys.forEach((jelly) => {
+            if (this.character.isColliding(jelly)) {
+                this.character.hit('jelly');
+                this.statusBar.setPercentage(this.character.energy);
+                if (Sound.volume) Sound.playOne(Sound.ESHOCKSOUND);
+            };
+            this.throwableObjects.forEach((bobble) => {
+                if (bobble.isColliding(jelly)) {
+                    jelly.dead++;
+                    setTimeout(() => {
+                        this.level.Jellys = this.level.Jellys.filter(j => j !== jelly);
+                    }, 800);
+                    this.throwableObjects = this.throwableObjects.filter(b => b !== bobble);
+                }
+            });
+        });
+    }
+
+    coinCheckCollisions() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                if (Sound.volume) Sound.playOne(Sound.COINSOUND);
+                this.character.addToCoins();
+                this.coinsCounter.setCoins(this.character.coins);
+
+                this.level.coins = this.level.coins.filter(c => c !== coin);
+            };
+        });
+    };
+
+    poisonCheckCollisions() {
+        this.level.poisons.forEach((poison) => {
+            if (this.character.isColliding(poison)) {
+                if (Sound.volume) Sound.playOne(Sound.POISONSOUND);
+                this.character.addToPoison();
+                this.level.poisons = this.level.poisons.filter(p => p !== poison);
+            };
+        });
+    };
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -146,6 +201,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.finalEnemySB);
         this.addToMap(this.coinsCounter);
         this.addToMap(this.poisonsCounter);
         this.ctx.translate(this.camera_x, 0);

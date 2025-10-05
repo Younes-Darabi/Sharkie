@@ -2,6 +2,8 @@ class MovableObject extends DrawableObject {
     speed = Math.random() * 1;
     otherDirection = false;
     lastHit = 0;
+    lastHitFinalEnemy = 0;
+    dead = 0;
 
     isColliding(mo) {
         return (
@@ -14,12 +16,12 @@ class MovableObject extends DrawableObject {
 
     addToPoison() {
         this.poisons++;
-        console.log(this.poisons);
+        world.poisonsCounter.setPotions(this.poisons);
     }
 
     removeFromPoison() {
-        this.poisons--;
-        console.log(this.poisons);
+        if (this.poisons > 0) this.poisons--;
+        world.poisonsCounter.setPotions(this.poisons);
     }
 
     addToCoins() {
@@ -52,6 +54,26 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1;
+    }
+
+    finalEnemyHit() {
+        this.finalEnemyEnergy -= 10;
+        world.finalEnemySB.setPercentage(this.finalEnemyEnergy);
+        if (this.finalEnemyEnergy < 0) {
+            this.finalEnemyEnergy = 0;
+        } else {
+            this.lastHitFinalEnemy = new Date().getTime();
+        }
+    }
+
+    finalEnemyIsHurt() {
+        let timepassed = new Date().getTime() - this.lastHitFinalEnemy;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
+    }
+
+    finalEnemyIsDead() {
+        return this.finalEnemyEnergy == 0;
     }
 
     moveTopBottom() {

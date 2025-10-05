@@ -118,9 +118,8 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log(this.poisons);
             if (World.gamePaused) return;
-            if (this.isAttacking &&  this.poisons>0) {
+            if (this.isAttacking && this.poisons > 0) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -149,7 +148,6 @@ class Character extends MovableObject {
         setInterval(() => {
             if (World.gamePaused) return;
             if (this.world.keyboard.SPACE && !this.isAttacking) {
-                if (this.poisons > 0) this.poisons -= 1;
                 this.isAttacking = true;
                 this.currentImage = 0;
                 setTimeout(() => {

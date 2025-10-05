@@ -7,6 +7,7 @@ class Sound {
     static GAMEOVER = new Audio('assets/sounds/game-over.mp3');
     static GAMEWIN = new Audio('assets/sounds/game-win.mp3');
     static CLICK = new Audio('assets/sounds/click.mp3');
+    static BUBBLE = new Audio('assets/sounds/bubble.mp3');
 
     static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND]
     static volume = true;

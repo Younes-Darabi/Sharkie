@@ -17,9 +17,17 @@ class JellyPink extends MovableObject {
         'assets/images/Enemies/Jelly/Pink/Pink4.png',
     ];
 
+    IMAGES_DEAD = [
+        'assets/images/Enemies/Jelly/Pink/Dead/Pink1.png',
+        'assets/images/Enemies/Jelly/Pink/Dead/Pink2.png',
+        'assets/images/Enemies/Jelly/Pink/Dead/Pink3.png',
+        'assets/images/Enemies/Jelly/Pink/Dead/Pink4.png',
+    ];
+
     constructor(x) {
         super().loadImage('assets/images/Enemies/Jelly/Pink/Pink1.png');
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = x;
         this.y = Math.random() * screenHeight;
@@ -31,7 +39,7 @@ class JellyPink extends MovableObject {
         this.moveTopBottom();
         setInterval(() => {
             if (World.gamePaused) return;
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else {this.playAnimation(this.IMAGES_DEAD)};
         }, 200)
     }
 

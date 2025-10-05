@@ -18,9 +18,17 @@ class JellyLila extends MovableObject {
         'assets/images/Enemies/Jelly/Lila/Lila4.png',
     ];
 
+    IMAGES_DEAD = [
+        'assets/images/Enemies/Jelly/Lila/Dead/Lila1.png',
+        'assets/images/Enemies/Jelly/Lila/Dead/Lila2.png',
+        'assets/images/Enemies/Jelly/Lila/Dead/Lila3.png',
+        'assets/images/Enemies/Jelly/Lila/Dead/Lila4.png',
+    ];
+
     constructor(x) {
         super().loadImage('assets/images/Enemies/Jelly/Lila/Lila1.png');
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = x;
         this.y = Math.random() * screenHeight;
@@ -32,7 +40,7 @@ class JellyLila extends MovableObject {
         this.moveTopBottom();
         setInterval(() => {
             if (World.gamePaused) return;
-            this.playAnimation(this.IMAGES_SWIMMING);
+            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else {this.playAnimation(this.IMAGES_DEAD)};
         }, 200)
     }
 

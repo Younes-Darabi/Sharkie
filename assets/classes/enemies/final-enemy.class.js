@@ -75,6 +75,8 @@ class FinalEnemy extends MovableObject {
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_FLOATING);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
         this.x = 4200;
         this.y = -50;
         this.animate();
@@ -84,8 +86,18 @@ class FinalEnemy extends MovableObject {
         let i = 0;
         setInterval(() => {
             if (World.gamePaused) return;
-            if (world.character.x > 3500) this.hadFirstContact = true;
-            if (i < 10 && this.hadFirstContact) {
+            if (world.character.x > 3500) {
+                this.hadFirstContact = true
+                world.finalEnemySB.width = 250;
+                world.finalEnemySB.height = 80;
+            };
+            if (this.finalEnemyIsDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+            else if(this.finalEnemyIsHurt()){
+                this.playAnimation(this.IMAGES_HURT);
+            }
+            else if (i < 10 && this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_INTRODUCE);
                 i++;
             }
@@ -110,7 +122,7 @@ class FinalEnemy extends MovableObject {
                 } else if (dy < -10) {
                     this.y -= yspeed; //top
                 }
-            };;
+            };
 
         }, 140)
     }

@@ -6,7 +6,7 @@ let screenSize = false;
 function init() {
     Sound.playOne(Sound.CLICK);
     document.getElementById('game_menu').style.display = 'none';
-    document.getElementById('game_screen').style.display = 'block';
+    document.getElementById('game_screen').style.display = 'flex';
     document.getElementById('canvas').style.display = 'block';
     initLevel();
     canvas = document.getElementById('canvas');
@@ -21,6 +21,7 @@ function volumeRender() {
     if (!Sound.volume) {
         Sound.BGMUSIC.volume = 0;
         Sound.CLICK.volume = 0;
+        Sound.BUBBLE.volume = 0;
     } else {
         Sound.BGMUSIC.volume = 1;
         Sound.CLICK.volume = 1;
@@ -54,7 +55,7 @@ function FullScreenRender() {
     if (!screenSize) {
         let img = document.getElementById("screen_img");
         img.src = World.screenSize ? 'assets/images/icons/smallscreen.png' : 'assets/images/icons/fullscreen.png';
-        let fullscreen = document.getElementById('canvas')
+        let fullscreen = document.getElementById('game_screen');
         if (fullscreen.requestFullscreen) {
             fullscreen.requestFullscreen();
         } else if (fullscreen.msRequestFullscreen) {
@@ -121,3 +122,47 @@ window.addEventListener('keyup', (e) => {
 
 });
 
+
+document.getElementById('button_up').addEventListener('touchstart', function () {
+    keyboard.UP = true;
+});
+
+document.getElementById('button_bobble').addEventListener('touchstart', function () {
+    keyboard.SPACE = true;
+});
+
+document.getElementById('button_down').addEventListener('touchstart', function () {
+    keyboard.DOWN = true;
+});
+
+document.getElementById('button_left').addEventListener('touchstart', function () {
+    keyboard.LEFT = true;
+});
+
+document.getElementById('button_right').addEventListener('touchstart', function () {
+    keyboard.RIGHT = true;
+});
+
+
+
+
+
+document.getElementById('button_up').addEventListener('touchend', function () {
+    keyboard.UP = false;
+});
+
+document.getElementById('button_bobble').addEventListener('touchend', function () {
+    keyboard.SPACE = false;
+});
+
+document.getElementById('button_down').addEventListener('touchend', function () {
+    keyboard.DOWN = false;
+});
+
+document.getElementById('button_left').addEventListener('touchend', function () {
+    keyboard.LEFT = false;
+});
+
+document.getElementById('button_right').addEventListener('touchend', function () {
+    keyboard.RIGHT = false;
+});
