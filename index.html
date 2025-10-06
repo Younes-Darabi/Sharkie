@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/icons/Sharkie.png">
-    <!-- <base href="/Sharkie/"> -->
-    <base href="/">
+    <base href="/Sharkie/">
+    <!-- <base href="/"> -->
 
     <title>Sharkie</title>
-
 
     <script src="assets/classes/drawable-object.class.js" defer></script>
     <script src="assets/classes/movable-object.class.js" defer></script>
@@ -39,56 +38,56 @@
     <script src="assets/levels/level1.js" defer></script>
     <script src="assets/scripts/game.js" defer></script>
 
-
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
-    <canvas id="canvas" width="720" height="480">
-    </canvas>
-
     <div id="game_screen" class="game_screen">
+        <canvas id="canvas" width="720" height="480">
+        </canvas>
         <div class="screen_top">
             <img onclick="world.gameRestart()" id="restart_img" class="screen_img"
                 src="assets/images/icons/restart.png">
-            <img onclick="FullScreenRender()" id="screen_img" class="screen_img"
+            <img onclick="FullScreenRender()" id="screen_img" class="fullScreen_img"
                 src="assets/images/icons/fullscreen.png">
             <img onclick="volumeRender()" id="volume_img" class="screen_img" src="assets/images/icons/volume.png">
             <img onclick="pauseRender()" id="pause_img" class="screen_img" src="assets/images/icons/pause.png">
         </div>
         <div class="screen_bottom">
             <div class="top_bottom_div">
-                <img id="button_up" class="responsive_button" src="assets/images/6.Botones/Key/top.png">
-                <img id="button_bobble" class="responsive_button" src="assets/images/6.Botones/Key/bobble.png">
-                <img id="button_down" class="responsive_button" src="assets/images/6.Botones/Key/bottom.png">
+                <button id="button_up" class="btn_top responsive_button"></button>
+                <button id="button_bobble" class="btn_bobble responsive_button"></button>
+                <button id="button_down" class="btn_bottom responsive_button"></button>
 
             </div>
-            <div>
-                <img id="button_left" class="responsive_button" src="assets/images/6.Botones/Key/left.png">
-                <img id="button_right" class="responsive_button" src="assets/images/6.Botones/Key/right.png">
+            <div class="left_right_div">
+                <button id="button_left" class="btn_left responsive_button"></button>
+                <button id="button_right" class="btn_right responsive_button"></button>
+            </div>
+        </div>
+        <div class="game_paused" id="game_paused">
+            <img onclick="playGameRender()" src="assets/images/icons/paused.png">
+            <a href="index.html">
+                <img class="menu_img" src="assets/images/6.Botones/Start/5.png" alt="Start">
+            </a>
+        </div>
+        <div class="game_ended" id="game_ended">
+            <img id="game_over" class="game_over" src="assets/images/6.Botones/Tittles/Game-Over/Recurso10.png">
+            <div class="div_tryagain">
+                <img onclick="world.gameRestart()" class="menu_img"
+                    src="assets/images/6.Botones/Try again/Recurso 18.png">
+                <a href="index.html">
+                    <img class="menu_img" src="assets/images/6.Botones/Start/5.png">
+                </a>
             </div>
         </div>
     </div>
 
     <div id="game_menu" class="game_menu">
-        <img onclick="init()" class="menu_img" src="assets/images/6.Botones/Start/4.png">
+        <img onclick="init()" class="start_img" src="assets/images/6.Botones/Start/4.png">
+        <img onclick="init(),FullScreenRender()" class="repolnsive_start" src="assets/images/6.Botones/Start/4.png">
         <img class="keyboard_img" src="assets/images/6.Botones/Instructions 2.png">
         <a href="impressum.html" target="_blank">Impressum</a>
-    </div>
-    <div class="game_paused" id="game_paused">
-        <img onclick="playGameRender()" src="assets/images/icons/paused.png">
-        <a href="index.html">
-            <img class="menu_img" src="assets/images/6.Botones/Start/5.png" alt="Start">
-        </a>
-    </div>
-    <div class="game_ended" id="game_ended">
-        <img id="game_over" class="game_over" src="assets/images/6.Botones/Tittles/Game-Over/Recurso10.png">
-        <div class="div_tryagain">
-            <img onclick="world.gameRestart()" class="menu_img" src="assets/images/6.Botones/Try again/Recurso 18.png">
-            <a href="index.html">
-                <img class="menu_img" src="assets/images/6.Botones/Start/5.png">
-            </a>
-        </div>
     </div>
 </body>
 

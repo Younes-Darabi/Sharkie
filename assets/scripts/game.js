@@ -1,7 +1,7 @@
 let canvas, world;
 let keyboard = new Keyboard();
 let soundStatus;
-let screenSize = false;
+let Fullscreen = false;
 
 function init() {
     Sound.playOne(Sound.CLICK);
@@ -52,26 +52,48 @@ function playGameRender() {
 
 function FullScreenRender() {
     Sound.playOne(Sound.CLICK);
-    if (!screenSize) {
-        let img = document.getElementById("screen_img");
-        img.src = World.screenSize ? 'assets/images/icons/smallscreen.png' : 'assets/images/icons/fullscreen.png';
-        let fullscreen = document.getElementById('game_screen');
-        if (fullscreen.requestFullscreen) {
-            fullscreen.requestFullscreen();
-        } else if (fullscreen.msRequestFullscreen) {
-            fullscreen.msRequestFullscreen();
-        } else if (fullscreen.webkitRequestFullscreen) {
-            fullscreen.webkitRequestFullscreen();
-        }
-        screenSize = true;
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-        screenSize = false;
+    Fullscreen = !Fullscreen;
+    let img = document.getElementById("screen_img");
+    img.src = Fullscreen ? 'assets/images/icons/smallscreen.png' : 'assets/images/icons/fullscreen.png';
+    let gameScreen = document.getElementById('game_screen');
+    if (Fullscreen) { enterFullScreen(gameScreen) } else exitFullScreen();
+}
+
+function enterFullScreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
     }
+    const canvas = document.getElementById('canvas');
+    canvas.style.width = '100%';
+    canvas.style.height = '100vh';
+    const gamePaused = document.getElementById('game_paused');
+    gamePaused.style.width = '100%';
+    gamePaused.style.height = '100vh';
+    const gameEnded = document.getElementById('game_ended');
+    gameEnded.style.width = '100%';
+    gameEnded.style.height = '100vh';
+}
+
+function exitFullScreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+    screenSize = false;
+    const canvas = document.getElementById('canvas');
+    canvas.style.width = '720px';
+    canvas.style.height = '480px';
+    const gamePaused = document.getElementById('game_paused');
+    gamePaused.style.width = '720px';
+    gamePaused.style.height = '480px';
+    const gameEnded = document.getElementById('game_ended');
+    gameEnded.style.width = '720px';
+    gameEnded.style.height = '480px';
 }
 
 window.addEventListener('keydown', (e) => {

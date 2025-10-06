@@ -11,6 +11,8 @@ body {
 }
 
 canvas {
+    position: absolute;
+    z-index: -1;
     background-color: black;
     border-radius: 5px;
     display: none;
@@ -54,20 +56,30 @@ a:hover {
     transition: all 300ms ease-in-out;
 }
 
+.fullScreen_img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
 .screen_img:hover {
     scale: 1.05;
 }
 
 .screen_bottom {
-    margin: 5px;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
     align-items: end;
 }
 
 .responsive_button {
-    width: 40px;
-    height: 40px;
+    display: none;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     transition: all 300ms ease-in-out;
 }
@@ -81,14 +93,23 @@ a:hover {
     background-color: transparent;
     background-size: cover;
     background-position: center;
-    width: 720px;
-    height: 480px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.start_img {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.start_img:hover {
+    scale: 1.1;
 }
 
 .menu_img {
@@ -99,6 +120,18 @@ a:hover {
 }
 
 .menu_img:hover {
+    scale: 1.1;
+}
+
+.repolnsive_start {
+    display: none;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.repolnsive_start:hover {
     scale: 1.1;
 }
 
@@ -159,36 +192,81 @@ a:hover {
     border-radius: 5px;
 }
 
-.top_bottom_div{
+.top_bottom_div {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-
-    .game_paused {
-        width: 100%;
-    }
+.left_right_div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
-@media only screen and (max-width: 480px) {
-    canvas {
-        width: 100%;
-    }
-
-    .game_paused {
-        height: 100%;
-    }
+.btn_top{
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../images/6.Botones/Key/top.png');
+    background-size: cover;
+}
+.btn_bottom{
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../images/6.Botones/Key/bottom.png');
+    background-size: cover;
+}
+.btn_bobble{
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../images/6.Botones/Key/bobble.png');
+    background-size: cover;
+}
+.btn_left{
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../images/6.Botones/Key/left.png');
+    background-size: cover;
+}
+.btn_right{
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../images/6.Botones/Key/right.png');
+    background-size: cover;
 }
 
-@media (hover: none) and (orientation: portrait) {}
+@media (hover: none) and (orientation: portrait) {
+    .keyboard_img {
+        display: none;
+    }
+
+    .start_img {
+        display: none;
+    }
+
+    .repolnsive_start {
+        display: block;
+    }
+}
 
 @media (hover: none) and (orientation: landscape) {
-    .responsiveButton {
+    .keyboard_img {
+        display: none;
+    }
+
+    .responsive_button {
+        display: flex;
+    }
+
+    .start_img {
+        display: none;
+    }
+
+    .repolnsive_start {
         display: block;
+    }
+
+    .fullScreen_img {
+        display: none;
     }
 }
