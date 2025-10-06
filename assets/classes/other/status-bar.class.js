@@ -1,5 +1,4 @@
 class StatusBar extends DrawableObject {
-
     IMAGES_ENERGY = [
         'assets/images/4.Marcadores/Purple/0_ .png',
         'assets/images/4.Marcadores/Purple/20__1.png',

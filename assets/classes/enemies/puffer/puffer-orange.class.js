@@ -9,7 +9,6 @@ class PufferOrange extends MovableObject {
         width: 55,
         height: 40,
     };
-
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Puffer/Orange/1.Swim/2.swim1.png',
         'assets/images/Enemies/Puffer/Orange/1.Swim/2.swim2.png',
@@ -17,7 +16,6 @@ class PufferOrange extends MovableObject {
         'assets/images/Enemies/Puffer/Orange/1.Swim/2.swim4.png',
         'assets/images/Enemies/Puffer/Orange/1.Swim/2.swim5.png',
     ];
-
     IMAGES_TRANSITION = [
         'assets/images/Enemies/Puffer/Orange/2.Transition/2.transition1.png',
         'assets/images/Enemies/Puffer/Orange/2.Transition/2.transition2.png',
@@ -25,7 +23,6 @@ class PufferOrange extends MovableObject {
         'assets/images/Enemies/Puffer/Orange/2.Transition/2.transition4.png',
         'assets/images/Enemies/Puffer/Orange/2.Transition/2.transition5.png',
     ];
-
     IMAGES_BUBBLEESWIM = [
         'assets/images/Enemies/Puffer/Orange/3.Bubbleeswim/2.bubbleswim1.png',
         'assets/images/Enemies/Puffer/Orange/3.Bubbleeswim/2.bubbleswim2.png',
@@ -33,7 +30,6 @@ class PufferOrange extends MovableObject {
         'assets/images/Enemies/Puffer/Orange/3.Bubbleeswim/2.bubbleswim4.png',
         'assets/images/Enemies/Puffer/Orange/3.Bubbleeswim/2.bubbleswim5.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/Enemies/Puffer/Orange/4.Dead/2.png',
         'assets/images/Enemies/Puffer/Orange/4.Dead/2.2.png',
@@ -46,10 +42,8 @@ class PufferOrange extends MovableObject {
         this.loadImages(this.IMAGES_TRANSITION);
         this.loadImages(this.IMAGES_BUBBLEESWIM);
         this.loadImages(this.IMAGES_DEAD);
-
         this.x = 500 + Math.random() * 5000;
         this.y = Math.random() * (screenHeight - this.height);
-
         this.animate();
     }
 
@@ -70,4 +64,5 @@ class PufferOrange extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD)
             };
         }, 100)
-    }}
+    }
+}

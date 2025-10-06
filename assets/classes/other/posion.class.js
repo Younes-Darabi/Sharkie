@@ -19,7 +19,6 @@ class Poison extends MovableObject {
         'assets/images/4.Marcadores/Posión/Animada/6.png',
         'assets/images/4.Marcadores/Posión/Animada/7.png',
         'assets/images/4.Marcadores/Posión/Animada/8.png',
-
     ];
 
     constructor(x, y) {
@@ -39,5 +38,4 @@ class Poison extends MovableObject {
             this.currentImage++;
         }, 170)
     }
-
 }

@@ -11,6 +11,9 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    Sound.all.forEach(element => {
+        element.volume = 0.1;
+    });
 }
 
 function volumeRender() {
@@ -19,14 +22,12 @@ function volumeRender() {
     let img = document.getElementById("volume_img");
     img.src = Sound.volume ? 'assets/images/icons/volume.png' : 'assets/images/icons/mute.png';
     if (!Sound.volume) {
-        Sound.BGMUSIC.volume = 0;
-        Sound.CLICK.volume = 0;
-        Sound.BUBBLE.volume = 0;
+        Sound.all.forEach(sound => {
+            sound.volume = 0;
+        });
     } else {
-        Sound.BGMUSIC.volume = 1;
-        Sound.CLICK.volume = 1;
-        Sound.allSounds.forEach(sound => {
-            sound.volume = 1;
+        Sound.all.forEach(sound => {
+            sound.volume = 0.1;
         });
     };
 }
@@ -97,94 +98,29 @@ function exitFullScreen() {
 }
 
 window.addEventListener('keydown', (e) => {
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
+    if (e.keyCode == 37) keyboard.LEFT = true;
+    if (e.keyCode == 38) keyboard.UP = true;
+    if (e.keyCode == 39) keyboard.RIGHT = true;
+    if (e.keyCode == 40) keyboard.DOWN = true;
+    if (e.keyCode == 32) keyboard.SPACE = true;
 });
 
 window.addEventListener('keyup', (e) => {
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
+    if (e.keyCode == 37) keyboard.LEFT = false;
+    if (e.keyCode == 38) keyboard.UP = false;
+    if (e.keyCode == 39) keyboard.RIGHT = false;
+    if (e.keyCode == 40) keyboard.DOWN = false;
+    if (e.keyCode == 32) keyboard.SPACE = false;
 });
 
+document.getElementById('button_up').addEventListener('touchstart', function () {keyboard.UP = true;});
+document.getElementById('button_bobble').addEventListener('touchstart', function () {keyboard.SPACE = true;});
+document.getElementById('button_down').addEventListener('touchstart', function () {keyboard.DOWN = true;});
+document.getElementById('button_left').addEventListener('touchstart', function () {keyboard.LEFT = true;});
+document.getElementById('button_right').addEventListener('touchstart', function () {keyboard.RIGHT = true;});
 
-document.getElementById('button_up').addEventListener('touchstart', function () {
-    keyboard.UP = true;
-});
-
-document.getElementById('button_bobble').addEventListener('touchstart', function () {
-    keyboard.SPACE = true;
-});
-
-document.getElementById('button_down').addEventListener('touchstart', function () {
-    keyboard.DOWN = true;
-});
-
-document.getElementById('button_left').addEventListener('touchstart', function () {
-    keyboard.LEFT = true;
-});
-
-document.getElementById('button_right').addEventListener('touchstart', function () {
-    keyboard.RIGHT = true;
-});
-
-
-
-
-
-document.getElementById('button_up').addEventListener('touchend', function () {
-    keyboard.UP = false;
-});
-
-document.getElementById('button_bobble').addEventListener('touchend', function () {
-    keyboard.SPACE = false;
-});
-
-document.getElementById('button_down').addEventListener('touchend', function () {
-    keyboard.DOWN = false;
-});
-
-document.getElementById('button_left').addEventListener('touchend', function () {
-    keyboard.LEFT = false;
-});
-
-document.getElementById('button_right').addEventListener('touchend', function () {
-    keyboard.RIGHT = false;
-});
+document.getElementById('button_up').addEventListener('touchend', function () {keyboard.UP = false;});
+document.getElementById('button_bobble').addEventListener('touchend', function () {keyboard.SPACE = false;});
+document.getElementById('button_down').addEventListener('touchend', function () {keyboard.DOWN = false;});
+document.getElementById('button_left').addEventListener('touchend', function () {keyboard.LEFT = false;});
+document.getElementById('button_right').addEventListener('touchend', function () {keyboard.RIGHT = false;});

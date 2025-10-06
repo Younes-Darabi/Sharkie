@@ -1,5 +1,4 @@
 class CoinsCounter extends DrawableObject {
-
     IMAGES_COINS = [
         'assets/images/4.Marcadores/Purple/0_ _1.png',
         'assets/images/4.Marcadores/Purple/20_ .png',

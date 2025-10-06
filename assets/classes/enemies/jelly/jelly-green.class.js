@@ -9,14 +9,12 @@ class JellyGreen extends MovableObject {
         width: 60,
         height: 50,
     };
-
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Green/Green1.png',
         'assets/images/Enemies/Jelly/Green/Green2.png',
         'assets/images/Enemies/Jelly/Green/Green3.png',
         'assets/images/Enemies/Jelly/Green/Green4.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/Enemies/Jelly/Green/Dead/Green1.png',
         'assets/images/Enemies/Jelly/Green/Dead/Green2.png',
@@ -41,7 +39,5 @@ class JellyGreen extends MovableObject {
             if (World.gamePaused) return;
             if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else { this.playAnimation(this.IMAGES_DEAD) };
         }, 200)
-
     }
-
 }

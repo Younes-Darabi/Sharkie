@@ -9,7 +9,6 @@ class PufferGreen extends MovableObject {
         width: 55,
         height: 40,
     };
-
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Puffer/Green/1.Swim/1.swim1.png',
         'assets/images/Enemies/Puffer/Green/1.Swim/1.swim2.png',
@@ -17,7 +16,6 @@ class PufferGreen extends MovableObject {
         'assets/images/Enemies/Puffer/Green/1.Swim/1.swim4.png',
         'assets/images/Enemies/Puffer/Green/1.Swim/1.swim5.png',
     ];
-
     IMAGES_TRANSITION = [
         'assets/images/Enemies/Puffer/Green/2.Transition/1.transition1.png',
         'assets/images/Enemies/Puffer/Green/2.Transition/1.transition2.png',
@@ -25,7 +23,6 @@ class PufferGreen extends MovableObject {
         'assets/images/Enemies/Puffer/Green/2.Transition/1.transition4.png',
         'assets/images/Enemies/Puffer/Green/2.Transition/1.transition5.png',
     ];
-
     IMAGES_BUBBLEESWIM = [
         'assets/images/Enemies/Puffer/Green/3.Bubbleeswim/1.bubbleswim1.png',
         'assets/images/Enemies/Puffer/Green/3.Bubbleeswim/1.bubbleswim2.png',
@@ -33,7 +30,6 @@ class PufferGreen extends MovableObject {
         'assets/images/Enemies/Puffer/Green/3.Bubbleeswim/1.bubbleswim4.png',
         'assets/images/Enemies/Puffer/Green/3.Bubbleeswim/1.bubbleswim5.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/Enemies/Puffer/Green/4.Dead/1.Dead 1 (can animate by going up).png',
         'assets/images/Enemies/Puffer/Green/4.Dead/1.Dead 2 (can animate by going down to the floor after the Fin Slap attack).png',
@@ -46,10 +42,8 @@ class PufferGreen extends MovableObject {
         this.loadImages(this.IMAGES_TRANSITION);
         this.loadImages(this.IMAGES_BUBBLEESWIM);
         this.loadImages(this.IMAGES_DEAD);
-
         this.x = 500 + Math.random() * 5000;
         this.y = Math.random() * (screenHeight - this.height);
-
         this.animate();
     }
 
@@ -70,4 +64,5 @@ class PufferGreen extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD)
             };
         }, 100)
-    }}
+    }
+}

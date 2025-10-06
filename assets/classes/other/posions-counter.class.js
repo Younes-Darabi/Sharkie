@@ -1,5 +1,4 @@
 class PoisonsCounter extends DrawableObject {
-
     IMAGES_POTION = [
         'assets/images/4.Marcadores/Purple/0_.png',
         'assets/images/4.Marcadores/Purple/20_.png',

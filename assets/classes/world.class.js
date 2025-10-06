@@ -1,6 +1,5 @@
 let screenWidth = 720;
 let screenHeight = 480;
-
 class World {
     character = new Character();
     level = level1;
@@ -30,7 +29,12 @@ class World {
         setInterval(() => {
             if (World.gamePaused) return;
             if (this.character.energy == 0 || this.finalEnemySB.finalEnemyEnergy == 0) {
-                if (this.character.energy > 0) { Sound.gameEnded(Sound.GAMEWIN) } else Sound.gameEnded(Sound.GAMEOVER);
+                if (this.character.energy > 0) {
+                    Sound.GAMEWIN.play();
+                } else {
+                    Sound.GAMEOVER.play();
+                }
+                Sound.BGMUSIC.pause();
                 World.gamePaused = true;
                 document.getElementById('game_ended').style.display = 'flex';
                 let img = document.getElementById("game_over");
@@ -40,7 +44,6 @@ class World {
     }
 
     gameRestart() {
-        Sound.playOne(Sound.CLICK);
         initLevel();
         this.level = level1;
         this.throwableObjects = [];
@@ -53,14 +56,18 @@ class World {
         this.poisonsCounter.setPotions(0);
         this.statusBar.setPercentage(50);
         this.finalEnemySB.setPercentage(50);
-        if (Sound.volume) {
-            Sound.allSounds.forEach(sound => {
-                sound.volume = 1;
-            });
-        }
-        Sound.counter = true;
         world.finalEnemySB.width = 0;
         world.finalEnemySB.height = 0;
+        this.soundRestart();
+    }
+    soundRestart() {
+        Sound.BGMUSIC.play();
+        Sound.playOne(Sound.CLICK);
+        if (Sound.volume) {
+            Sound.allSounds.forEach(sound => {
+                sound.volume = 0.1;
+            });
+        }
     }
 
     setWorld() {
@@ -71,7 +78,6 @@ class World {
         if (this.keyboard.SPACE && !this.character.throwCooldown && this.character.poisons > 0) {
             this.character.removeFromPoison();
             this.character.throwCooldown = true;
-
             setTimeout(() => {
                 let bobble;
                 if (this.character.otherDirection) {
@@ -81,19 +87,15 @@ class World {
                 }
                 this.throwableObjects.push(bobble);
                 Sound.playOne(Sound.BUBBLE);
-
                 setTimeout(() => {
                     this.throwableObjects = this.throwableObjects.filter(b => b !== bobble);
                 }, 900);
-
                 setTimeout(() => {
                     this.character.throwCooldown = false;
                 }, 1700);
-
             }, 800);
         }
     }
-
 
     checkCollisions() {
         setInterval(() => {
@@ -187,10 +189,8 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
-
         this.addObjectsToMap(this.level.Jellys);
         this.addObjectsToMap(this.level.Puffers);
         this.addObjectsToMap(this.level.coins);
@@ -198,16 +198,13 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.FinalEnemy);
         this.addToMap(this.character);
-
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.finalEnemySB);
         this.addToMap(this.coinsCounter);
         this.addToMap(this.poisonsCounter);
         this.ctx.translate(this.camera_x, 0);
-
         this.ctx.translate(-this.camera_x, 0);
-
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
@@ -225,12 +222,9 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }

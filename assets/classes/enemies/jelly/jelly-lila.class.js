@@ -9,15 +9,12 @@ class JellyLila extends MovableObject {
         width: 60,
         height: 50,
     };
-
-
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Lila/Lila1.png',
         'assets/images/Enemies/Jelly/Lila/Lila2.png',
         'assets/images/Enemies/Jelly/Lila/Lila3.png',
         'assets/images/Enemies/Jelly/Lila/Lila4.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/Enemies/Jelly/Lila/Dead/Lila1.png',
         'assets/images/Enemies/Jelly/Lila/Dead/Lila2.png',
@@ -40,8 +37,7 @@ class JellyLila extends MovableObject {
         this.moveTopBottom();
         setInterval(() => {
             if (World.gamePaused) return;
-            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else {this.playAnimation(this.IMAGES_DEAD)};
+            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else { this.playAnimation(this.IMAGES_DEAD) };
         }, 200)
     }
-
 }

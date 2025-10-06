@@ -8,12 +8,9 @@ class Sound {
     static GAMEWIN = new Audio('assets/sounds/game-win.mp3');
     static CLICK = new Audio('assets/sounds/click.mp3');
     static BUBBLE = new Audio('assets/sounds/bubble.mp3');
-
     static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND]
+    static all = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND,Sound.GAMEOVER,Sound.GAMEWIN,Sound.CLICK,Sound.BUBBLE]
     static volume = true;
-
-    //GAMEOVER counter
-    static counter = true;
 
     static playOne(sound) {
         sound.play();
@@ -22,18 +19,7 @@ class Sound {
     static playBg(sound) {
         if (sound.readyState == 4) {
             sound.play();
-            sound.volume = 1;
             sound.loop = true;
         }
     }
-
-    static gameEnded(result) {
-        this.allSounds.forEach(sound => {
-            sound.volume = 0;
-        });
-        if (this.counter && Sound.volume) result.play();
-        this.counter = false;
-    }
-
-
 }

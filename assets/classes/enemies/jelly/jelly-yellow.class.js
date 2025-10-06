@@ -15,7 +15,6 @@ class JellyYellow extends MovableObject {
         'assets/images/Enemies/Jelly/Yellow/Yellow3.png',
         'assets/images/Enemies/Jelly/Yellow/Yellow4.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/Enemies/Jelly/Yellow/Dead/Yellow1.png',
         'assets/images/Enemies/Jelly/Yellow/Dead/Yellow2.png',
@@ -38,8 +37,7 @@ class JellyYellow extends MovableObject {
         this.moveTopBottom();
         setInterval(() => {
             if (World.gamePaused) return;
-            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else {this.playAnimation(this.IMAGES_DEAD)};
+            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else { this.playAnimation(this.IMAGES_DEAD) };
         }, 200)
     }
-
 }

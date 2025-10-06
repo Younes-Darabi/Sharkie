@@ -8,7 +8,6 @@ class Character extends MovableObject {
     isAttacking = false;
     isLongIdle = false;
     langCounter = 0;
-
     offset = {
         left: 50,
         top: 125,
@@ -17,7 +16,6 @@ class Character extends MovableObject {
         width: 150,
         height: 60,
     };
-
     IMAGES_IDLE = [
         'assets/images/1.Sharkie/1.IDLE/1.png',
         'assets/images/1.Sharkie/1.IDLE/2.png',
@@ -38,7 +36,6 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/1.IDLE/17.png',
         'assets/images/1.Sharkie/1.IDLE/18.png',
     ];
-
     IMAGES_LONG_IDLE = [
         'assets/images/1.Sharkie/2.Long_IDLE/i1.png',
         'assets/images/1.Sharkie/2.Long_IDLE/I2.png',
@@ -56,7 +53,6 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/2.Long_IDLE/I14.png',
         'assets/images/1.Sharkie/2.Long_IDLE/I14.png',
     ];
-
     IMAGES_SWIMMING = [
         'assets/images/1.Sharkie/3.Swim/1.png',
         'assets/images/1.Sharkie/3.Swim/2.png',
@@ -65,7 +61,6 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/3.Swim/5.png',
         'assets/images/1.Sharkie/3.Swim/6.png',
     ];
-
     IMAGES_DEAD = [
         'assets/images/1.Sharkie/6.dead/1.Poisoned/1.png',
         'assets/images/1.Sharkie/6.dead/1.Poisoned/2.png',
@@ -80,19 +75,16 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/6.dead/1.Poisoned/11.png',
         'assets/images/1.Sharkie/6.dead/1.Poisoned/12.png',
     ];
-
     IMAGES_HURT = [
         'assets/images/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         'assets/images/1.Sharkie/5.Hurt/1.Poisoned/2.png',
         'assets/images/1.Sharkie/5.Hurt/1.Poisoned/3.png',
         'assets/images/1.Sharkie/5.Hurt/1.Poisoned/4.png',
     ];
-
     IMAGES_HURTJELLY = [
         'assets/images/1.Sharkie/5.Hurt/2.Electric-shock/o1.png',
         'assets/images/1.Sharkie/5.Hurt/2.Electric-shock/o2.png',
     ];
-
     IMAGES_ATTACK = [
         'assets/images/1.Sharkie/4.Attack/Bubble-trap/op1/1.png',
         'assets/images/1.Sharkie/4.Attack/Bubble-trap/op1/2.png',
@@ -117,6 +109,11 @@ class Character extends MovableObject {
     }
 
     animate() {
+        this.showCharacterAnimation();
+        this.moveCharacter();
+    }
+
+    showCharacterAnimation() {
         setInterval(() => {
             if (World.gamePaused) return;
             if (this.isAttacking && this.poisons > 0) {
@@ -127,8 +124,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isHurt() && this.enemyType == 'jelly') {
                 this.playAnimation(this.IMAGES_HURTJELLY);
-            }
-            else if (this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.RIGHT || this.world.keyboard.DOWN) {
+            } else if (this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.RIGHT || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_SWIMMING);
                 this.isLongIdle = false;
                 this.langCounter = 0;
@@ -136,7 +132,6 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_LONG_IDLE)
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
-
                 this.langCounter++;
                 if (this.langCounter > 40) {
                     this.isLongIdle = true;
@@ -144,7 +139,9 @@ class Character extends MovableObject {
                 }
             }
         }, 120)
+    }
 
+    moveCharacter() {
         setInterval(() => {
             if (World.gamePaused) return;
             if (this.world.keyboard.SPACE && !this.isAttacking) {
