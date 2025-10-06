@@ -3,6 +3,11 @@ let keyboard = new Keyboard();
 let soundStatus;
 let Fullscreen = false;
 
+/**
+ * Initializes the game by hiding the menu, showing the game screen,
+ * setting up the level, and creating the world and keyboard instance.
+ * Plays a click sound and sets default sound volumes.
+ */
 function init() {
     Sound.playOne(Sound.CLICK);
     document.getElementById('game_menu').style.display = 'none';
@@ -16,6 +21,10 @@ function init() {
     });
 }
 
+/**
+ * Toggles the game's sound on and off.
+ * Updates the volume icon accordingly.
+ */
 function volumeRender() {
     Sound.playOne(Sound.CLICK);
     Sound.volume = !Sound.volume;
@@ -32,6 +41,10 @@ function volumeRender() {
     };
 }
 
+/**
+ * Pauses the game and shows the pause menu.
+ * Saves the current sound status and plays a click sound.
+ */
 function pauseRender() {
     soundStatus = Sound.volume;
     Sound.playOne(Sound.CLICK);
@@ -42,6 +55,9 @@ function pauseRender() {
     volumeRender();
 }
 
+/**
+ * Resumes the game from the paused state and restores sound settings.
+ */
 function playGameRender() {
     document.getElementById('game_paused').style.display = 'none';
     document.getElementById("pause_img").src = 'assets/images/icons/pause.png';
@@ -51,6 +67,9 @@ function playGameRender() {
     volumeRender();
 }
 
+/**
+ * Toggles fullscreen mode for the game canvas and updates the screen icon.
+ */
 function FullScreenRender() {
     Sound.playOne(Sound.CLICK);
     Fullscreen = !Fullscreen;
@@ -60,6 +79,10 @@ function FullScreenRender() {
     if (Fullscreen) { enterFullScreen(gameScreen) } else exitFullScreen();
 }
 
+/**
+ * Enters fullscreen mode for the given game element.
+ * @param {HTMLElement} element - The game container to display in fullscreen.
+ */
 function enterFullScreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -79,6 +102,9 @@ function enterFullScreen(element) {
     gameEnded.style.height = '100vh';
 }
 
+/**
+ * Exits fullscreen mode and restores the original canvas size.
+ */
 function exitFullScreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -113,14 +139,14 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 32) keyboard.SPACE = false;
 });
 
-document.getElementById('button_up').addEventListener('touchstart', function () {keyboard.UP = true;});
-document.getElementById('button_bobble').addEventListener('touchstart', function () {keyboard.SPACE = true;});
-document.getElementById('button_down').addEventListener('touchstart', function () {keyboard.DOWN = true;});
-document.getElementById('button_left').addEventListener('touchstart', function () {keyboard.LEFT = true;});
-document.getElementById('button_right').addEventListener('touchstart', function () {keyboard.RIGHT = true;});
+document.getElementById('button_up').addEventListener('touchstart', function () { keyboard.UP = true; });
+document.getElementById('button_bobble').addEventListener('touchstart', function () { keyboard.SPACE = true; });
+document.getElementById('button_down').addEventListener('touchstart', function () { keyboard.DOWN = true; });
+document.getElementById('button_left').addEventListener('touchstart', function () { keyboard.LEFT = true; });
+document.getElementById('button_right').addEventListener('touchstart', function () { keyboard.RIGHT = true; });
 
-document.getElementById('button_up').addEventListener('touchend', function () {keyboard.UP = false;});
-document.getElementById('button_bobble').addEventListener('touchend', function () {keyboard.SPACE = false;});
-document.getElementById('button_down').addEventListener('touchend', function () {keyboard.DOWN = false;});
-document.getElementById('button_left').addEventListener('touchend', function () {keyboard.LEFT = false;});
-document.getElementById('button_right').addEventListener('touchend', function () {keyboard.RIGHT = false;});
+document.getElementById('button_up').addEventListener('touchend', function () { keyboard.UP = false; });
+document.getElementById('button_bobble').addEventListener('touchend', function () { keyboard.SPACE = false; });
+document.getElementById('button_down').addEventListener('touchend', function () { keyboard.DOWN = false; });
+document.getElementById('button_left').addEventListener('touchend', function () { keyboard.LEFT = false; });
+document.getElementById('button_right').addEventListener('touchend', function () { keyboard.RIGHT = false; });

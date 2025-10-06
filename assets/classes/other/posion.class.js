@@ -1,14 +1,11 @@
+/**
+ * Represents an animated poison bottle object collectible by the player.
+ * @extends MovableObject
+ */
 class Poison extends MovableObject {
     height = 80;
     width = 55;
-    offset = {
-        left: 10,
-        top: 0,
-        right: 10,
-        bottom: 0,
-        width: 30,
-        height: 80,
-    };
+    offset = { left: 10, top: 0, right: 10, bottom: 0, width: 30, height: 80 };
 
     IMAGES_POISON = [
         'assets/images/4.Marcadores/Posión/Animada/1.png',
@@ -21,6 +18,11 @@ class Poison extends MovableObject {
         'assets/images/4.Marcadores/Posión/Animada/8.png',
     ];
 
+    /**
+     * Creates a new poison bottle instance.
+     * @param {number} x - The X position of the poison.
+     * @param {number} y - The Y position of the poison.
+     */
     constructor(x, y) {
         super().loadImage('assets/images/4.Marcadores/Posión/Animada/1.png');
         this.loadImages(this.IMAGES_POISON);
@@ -29,6 +31,9 @@ class Poison extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the poison bottle in a continuous loop.
+     */
     animate() {
         setInterval(() => {
             if (World.gamePaused) return;
@@ -36,6 +41,6 @@ class Poison extends MovableObject {
             let path = this.IMAGES_POISON[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        }, 170)
+        }, 170);
     }
 }

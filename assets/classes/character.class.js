@@ -1,3 +1,8 @@
+/**
+ * Represents the main player character (Sharkie).
+ * Handles animations, movement, and attacks.
+ * @extends MovableObject
+ */
 class Character extends MovableObject {
     x = -100;
     y = 80;
@@ -96,6 +101,9 @@ class Character extends MovableObject {
         'assets/images/1.Sharkie/4.Attack/Bubble-trap/op1/8.png',
     ];
 
+    /**
+    * Creates a new character instance and loads all animation images.
+    */
     constructor() {
         super().loadImage(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_IDLE);
@@ -108,11 +116,17 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts the character animations and movement logic.
+     */
     animate() {
         this.showCharacterAnimation();
         this.moveCharacter();
     }
 
+    /**
+     * Displays the correct animation based on the character's current state.
+     */
     showCharacterAnimation() {
         setInterval(() => {
             if (World.gamePaused) return;
@@ -140,7 +154,10 @@ class Character extends MovableObject {
             }
         }, 120)
     }
-
+    
+    /**
+     * Handles character movement and attack input.
+     */
     moveCharacter() {
         setInterval(() => {
             if (World.gamePaused) return;

@@ -1,6 +1,21 @@
+/**
+ * Represents a pink jelly enemy in the game.
+ * This enemy moves vertically (top-bottom) and has swimming and dead animations.
+ *
+ * @extends MovableObject
+ */
 class JellyPink extends MovableObject {
+
+    /** @type {number} Display height of the enemy in pixels */
     height = 70;
+
+    /** @type {number} Display width of the enemy in pixels */
     width = 70;
+
+    /**
+     * Collision offset for hit detection
+     * @type {{left: number, top: number, right: number, bottom: number, width: number, height: number}}
+     */
     offset = {
         left: 5,
         top: 10,
@@ -9,12 +24,16 @@ class JellyPink extends MovableObject {
         width: 60,
         height: 50,
     };
+
+    /** @type {string[]} Animation frames for swimming */
     IMAGES_SWIMMING = [
         'assets/images/Enemies/Jelly/Pink/Pink1.png',
         'assets/images/Enemies/Jelly/Pink/Pink2.png',
         'assets/images/Enemies/Jelly/Pink/Pink3.png',
         'assets/images/Enemies/Jelly/Pink/Pink4.png',
     ];
+
+    /** @type {string[]} Animation frames for dead state */
     IMAGES_DEAD = [
         'assets/images/Enemies/Jelly/Pink/Dead/Pink1.png',
         'assets/images/Enemies/Jelly/Pink/Dead/Pink2.png',
@@ -22,6 +41,12 @@ class JellyPink extends MovableObject {
         'assets/images/Enemies/Jelly/Pink/Dead/Pink4.png',
     ];
 
+    /**
+     * Creates a new pink jelly enemy instance.
+     * Randomizes the y position and loads all animation frames.
+     * 
+     * @param {number} x - The initial x position of the jelly
+     */
     constructor(x) {
         super().loadImage('assets/images/Enemies/Jelly/Pink/Pink1.png');
         this.loadImages(this.IMAGES_SWIMMING);
@@ -33,11 +58,24 @@ class JellyPink extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the JellyPink based on its state.
+     * - dead == 0 → swimming
+     * - dead > 0 → dead animation
+     *
+     * @fires moveTopBottom()
+     * @fires playAnimation()
+     */
     animate() {
         this.moveTopBottom();
         setInterval(() => {
             if (World.gamePaused) return;
-            if (this.dead == 0) { this.playAnimation(this.IMAGES_SWIMMING) } else { this.playAnimation(this.IMAGES_DEAD) };
-        }, 200)
+
+            if (this.dead == 0) {
+                this.playAnimation(this.IMAGES_SWIMMING);
+            } else {
+                this.playAnimation(this.IMAGES_DEAD);
+            }
+        }, 200);
     }
 }

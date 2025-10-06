@@ -1,3 +1,7 @@
+/**
+ * Displays the number of collected poison bottles.
+ * @extends DrawableObject
+ */
 class PoisonsCounter extends DrawableObject {
     IMAGES_POTION = [
         'assets/images/4.Marcadores/Purple/0_.png',
@@ -10,7 +14,7 @@ class PoisonsCounter extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_POTION)
+        this.loadImages(this.IMAGES_POTION);
         this.x = 0;
         this.y = 60;
         this.width = 150;
@@ -18,8 +22,12 @@ class PoisonsCounter extends DrawableObject {
         this.setPotions(0);
     }
 
+    /**
+     * Updates the poison counter display.
+     * @param {number} poison - Number of collected poisons.
+     */
     setPotions(poison) {
-        this.poison = poison*3.4;
+        this.poison = poison * 3.4;
         let num = Math.floor(this.poison / 10);
         let path = this.IMAGES_POTION[num];
         this.img = this.imageCache[path];

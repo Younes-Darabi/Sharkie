@@ -1,3 +1,8 @@
+/**
+ * Displays the player's energy level on screen.
+ * Updates dynamically based on remaining energy.
+ * @extends DrawableObject
+ */
 class StatusBar extends DrawableObject {
     IMAGES_ENERGY = [
         'assets/images/4.Marcadores/Purple/0_ .png',
@@ -10,7 +15,7 @@ class StatusBar extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_ENERGY)
+        this.loadImages(this.IMAGES_ENERGY);
         this.x = 0;
         this.y = -10;
         this.width = 150;
@@ -18,6 +23,10 @@ class StatusBar extends DrawableObject {
         this.setPercentage(50);
     }
 
+    /**
+     * Updates the energy bar according to the player's current energy.
+     * @param {number} energy - Current energy value (0–100).
+     */
     setPercentage(energy) {
         this.energy = energy;
         let num = Math.floor(this.energy / 10);

@@ -1,3 +1,8 @@
+/**
+ * Base class for all movable objects in the game.
+ * Handles movement, collisions, and interactions.
+ * @extends DrawableObject
+ */
 class MovableObject extends DrawableObject {
     speed = Math.random() * 1;
     otherDirection = false;
@@ -5,6 +10,11 @@ class MovableObject extends DrawableObject {
     lastHitFinalEnemy = 0;
     dead = 0;
 
+    /**
+     * Checks if this object is colliding with another.
+     * @param {MovableObject} mo - The other movable object.
+     * @returns {boolean} True if the objects are colliding, false otherwise.
+     */
     isColliding(mo) {
         return (
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
@@ -36,6 +46,10 @@ class MovableObject extends DrawableObject {
         this.otherDirection = false;
     }
 
+    /**
+     * Reduces player energy when hit by an enemy.
+     * @param {string} enemyType - The type of enemy ("puffer" or "jelly").
+     */
     hit(enemyType) {
         this.energy -= 1;
         this.enemyType = enemyType;
@@ -98,6 +112,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 60)
     }
 
+    /**
+     * Plays a given animation sequence.
+     * @param {string[]} images - Array of image paths to animate.
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

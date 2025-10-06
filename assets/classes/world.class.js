@@ -1,5 +1,10 @@
 let screenWidth = 720;
 let screenHeight = 480;
+
+/**
+ * Represents the main game world, handling rendering, collisions,
+ * and interactions between the player, enemies, and collectibles.
+ */
 class World {
     character = new Character();
     level = level1;
@@ -14,6 +19,11 @@ class World {
     throwableObjects = [];
     gamePaused = false;
 
+    /**
+     * Creates a new world instance.
+     * @param {HTMLCanvasElement} canvas - The canvas where the game is rendered.
+     * @param {Keyboard} keyboard - The keyboard input handler.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -25,6 +35,9 @@ class World {
         this.gameEndedCheck();
     }
 
+    /**
+     * Periodically checks if the game has ended (player win/lose conditions).
+     */
     gameEndedCheck() {
         setInterval(() => {
             if (World.gamePaused) return;
@@ -43,6 +56,9 @@ class World {
         }, 2000);
     }
 
+    /**
+     * Restarts the game by resetting all objects and counters.
+     */
     gameRestart() {
         initLevel();
         this.level = level1;
@@ -60,6 +76,10 @@ class World {
         world.finalEnemySB.height = 0;
         this.soundRestart();
     }
+
+    /**
+     * Resets and restarts background music and sound effects.
+     */
     soundRestart() {
         Sound.BGMUSIC.play();
         Sound.playOne(Sound.CLICK);
@@ -70,10 +90,16 @@ class World {
         }
     }
 
+    /**
+     * Connects the world instance to the player character.
+     */
     setWorld() {
         this.character.world = this;
     };
 
+    /**
+     * Handles shooting bubbles (projectiles) when the player presses SPACE.
+     */
     bubbleShooter() {
         if (this.keyboard.SPACE && !this.character.throwCooldown && this.character.poisons > 0) {
             this.character.removeFromPoison();
@@ -97,6 +123,9 @@ class World {
         }
     }
 
+    /**
+     * Checks for collisions between all relevant objects in the game.
+     */
     checkCollisions() {
         setInterval(() => {
             if (World.gamePaused) return;
@@ -187,6 +216,9 @@ class World {
         });
     };
 
+    /**
+     * Draws all elements on the canvas and continuously re-renders the world.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -212,12 +244,20 @@ class World {
         });
     }
 
+    /**
+     * Adds a list of drawable objects to the canvas.
+     * @param {DrawableObject[]} object - The array of drawable objects.
+     */
     addObjectsToMap(object) {
         object.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * Draws a single object on the canvas.
+     * @param {DrawableObject} mo - The object to be drawn.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
