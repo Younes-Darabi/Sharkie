@@ -204,48 +204,74 @@ a:hover {
     gap: 10px;
 }
 
-.btn_top{
+.btn_top {
     border-style: none;
     background-color: transparent;
     background-image: url('../images/6.Botones/Key/top.png');
     background-size: cover;
 }
-.btn_bottom{
+
+.btn_bottom {
     border-style: none;
     background-color: transparent;
     background-image: url('../images/6.Botones/Key/bottom.png');
     background-size: cover;
 }
-.btn_bobble{
+
+.btn_bobble {
     border-style: none;
     background-color: transparent;
     background-image: url('../images/6.Botones/Key/bobble.png');
     background-size: cover;
 }
-.btn_left{
+
+.btn_left {
     border-style: none;
     background-color: transparent;
     background-image: url('../images/6.Botones/Key/left.png');
     background-size: cover;
 }
-.btn_right{
+
+.btn_right {
     border-style: none;
     background-color: transparent;
     background-image: url('../images/6.Botones/Key/right.png');
     background-size: cover;
 }
 
+.landscape {
+    display: none;
+}
+
 @media (hover: none) and (orientation: portrait) {
     .keyboard_img {
         display: none;
     }
-    
+
+    body {
+        background-color: white;
+        background-image: none;
+    }
+
     .start_img {
         display: none;
     }
 
     .repolnsive_start {
         display: block;
+    }
+
+    .landscape {
+        display: block;
+        width: 100%;
+    }
+
+    .game_menu {
+        display: none;
+    }
+
+    .fullScreen_img {
+        display: none;
     }
 }
 

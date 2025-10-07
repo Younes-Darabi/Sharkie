@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/icons/Sharkie.png">
     <!-- <base href="/Sharkie/"> -->
     <base href="/">
-
     <title>Sharkie</title>
-
     <script src="assets/classes/drawable-object.class.js" defer></script>
     <script src="assets/classes/movable-object.class.js" defer></script>
     <script src="assets/classes/character.class.js" defer></script>
-
     <script src="assets/classes/other/keyboard.class.js" defer></script>
-
     <script src="assets/classes/enemies/jelly/jelly-green.class.js" defer></script>
     <script src="assets/classes/enemies/jelly/jelly-lila.class.js" defer></script>
     <script src="assets/classes/enemies/jelly/jelly-pink.class.js" defer></script>
@@ -37,10 +32,8 @@
     <script src="assets/classes/enemies/final-enemy.class.js" defer></script>
     <script src="assets/levels/level1.js" defer></script>
     <script src="assets/scripts/game.js" defer></script>
-
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-
 <body>
     <div id="game_screen" class="game_screen">
         <canvas id="canvas" width="720" height="480">
@@ -58,7 +51,6 @@
                 <button id="button_up" class="btn_top responsive_button"></button>
                 <button id="button_bobble" class="btn_bobble responsive_button"></button>
                 <button id="button_down" class="btn_bottom responsive_button"></button>
-
             </div>
             <div class="left_right_div">
                 <button id="button_left" class="btn_left responsive_button"></button>
@@ -82,7 +74,7 @@
             </div>
         </div>
     </div>
-
+    <img class="landscape" src="assets/images/turn-to-landscape.gif">
     <div id="game_menu" class="game_menu">
         <img onclick="init()" class="start_img" src="assets/images/6.Botones/Start/4.png">
         <img onclick="init(),FullScreenRender()" class="repolnsive_start" src="assets/images/6.Botones/Start/4.png">
@@ -90,5 +82,4 @@
         <a href="impressum.html" target="_blank">Impressum</a>
     </div>
 </body>
-
 </html>
