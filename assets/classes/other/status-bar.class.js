@@ -4,23 +4,16 @@
  * @extends DrawableObject
  */
 class StatusBar extends DrawableObject {
-    IMAGES_ENERGY = [
-        'assets/images/4.Marcadores/Purple/0_ .png',
-        'assets/images/4.Marcadores/Purple/20__1.png',
-        'assets/images/4.Marcadores/Purple/40_ .png',
-        'assets/images/4.Marcadores/Purple/60_ .png',
-        'assets/images/4.Marcadores/Purple/80_ .png',
-        'assets/images/4.Marcadores/Purple/100_ .png',
-    ];
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_ENERGY);
-        this.x = 0;
+        this.loadImage('assets/images/4.Marcadores/green/100_  copia 3.png');
+        this.x = -7;
         this.y = -10;
-        this.width = 150;
+        this.width = 50;
         this.height = 50;
         this.setPercentage(50);
+        this.energy = 50;
     }
 
     /**
@@ -29,8 +22,11 @@ class StatusBar extends DrawableObject {
      */
     setPercentage(energy) {
         this.energy = energy;
-        let num = Math.floor(this.energy / 10);
-        let path = this.IMAGES_ENERGY[num];
-        this.img = this.imageCache[path];
+    }
+
+    draw(ctx) {
+        ctx.font = '24px Arial';
+        ctx.fillStyle = 'red';
+        ctx.fillText(this.energy, this.x + 43, this.y + 39);
     }
 }

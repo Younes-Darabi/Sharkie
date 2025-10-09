@@ -75,6 +75,7 @@ class World {
         world.finalEnemySB.width = 0;
         world.finalEnemySB.height = 0;
         this.soundRestart();
+        playGameRender();
     }
 
     /**
@@ -82,7 +83,6 @@ class World {
      */
     soundRestart() {
         Sound.BGMUSIC.play();
-        Sound.playOne(Sound.CLICK);
         if (Sound.volume) {
             Sound.allSounds.forEach(sound => {
                 sound.volume = 0.1;
@@ -200,7 +200,6 @@ class World {
                 if (Sound.volume) Sound.playOne(Sound.COINSOUND);
                 this.character.addToCoins();
                 this.coinsCounter.setCoins(this.character.coins);
-
                 this.level.coins = this.level.coins.filter(c => c !== coin);
             };
         });

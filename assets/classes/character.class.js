@@ -131,6 +131,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (World.gamePaused) return;
             if (this.isAttacking && this.poisons > 0) {
+                
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);

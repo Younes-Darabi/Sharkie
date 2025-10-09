@@ -158,9 +158,11 @@ class FinalEnemy extends MovableObject {
      */
     finalEnemyShowCheck() {
         if (world.character.x > 3500) {
-            this.hadFirstContact = true;
-            world.finalEnemySB.width = 250;
-            world.finalEnemySB.height = 80;
+            setTimeout(() => {
+                this.hadFirstContact = true;
+                world.finalEnemySB.width = 250;
+                world.finalEnemySB.height = 80;
+            }, 1000);
         }
     }
 

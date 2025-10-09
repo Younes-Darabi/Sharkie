@@ -6,10 +6,9 @@ let Fullscreen = false;
 /**
  * Initializes the game by hiding the menu, showing the game screen,
  * setting up the level, and creating the world and keyboard instance.
- * Plays a click sound and sets default sound volumes.
+ * Sets default sound volumes.
  */
 function init() {
-    Sound.playOne(Sound.CLICK);
     document.getElementById('game_menu').style.display = 'none';
     document.getElementById('game_screen').style.display = 'flex';
     document.getElementById('canvas').style.display = 'block';
@@ -26,7 +25,6 @@ function init() {
  * Updates the volume icon accordingly.
  */
 function volumeRender() {
-    Sound.playOne(Sound.CLICK);
     Sound.volume = !Sound.volume;
     let img = document.getElementById("volume_img");
     img.src = Sound.volume ? 'assets/images/icons/volume.png' : 'assets/images/icons/mute.png';
@@ -43,11 +41,10 @@ function volumeRender() {
 
 /**
  * Pauses the game and shows the pause menu.
- * Saves the current sound status and plays a click sound.
+ * Saves the current sound status.
  */
 function pauseRender() {
     soundStatus = Sound.volume;
-    Sound.playOne(Sound.CLICK);
     World.gamePaused = true;
     document.getElementById('game_paused').style.display = 'flex';
     document.getElementById("pause_img").src = 'assets/images/icons/play.png';
@@ -61,7 +58,6 @@ function pauseRender() {
 function playGameRender() {
     document.getElementById('game_paused').style.display = 'none';
     document.getElementById("pause_img").src = 'assets/images/icons/pause.png';
-    Sound.playOne(Sound.CLICK);
     World.gamePaused = false;
     Sound.volume = !soundStatus;
     volumeRender();
@@ -71,7 +67,6 @@ function playGameRender() {
  * Toggles fullscreen mode for the game canvas and updates the screen icon.
  */
 function FullScreenRender() {
-    Sound.playOne(Sound.CLICK);
     Fullscreen = !Fullscreen;
     let img = document.getElementById("screen_img");
     img.src = Fullscreen ? 'assets/images/icons/smallscreen.png' : 'assets/images/icons/fullscreen.png';
@@ -150,3 +145,43 @@ document.getElementById('button_bobble').addEventListener('touchend', function (
 document.getElementById('button_down').addEventListener('touchend', function () { keyboard.DOWN = false; });
 document.getElementById('button_left').addEventListener('touchend', function () { keyboard.LEFT = false; });
 document.getElementById('button_right').addEventListener('touchend', function () { keyboard.RIGHT = false; });
+
+function showControl() {
+    document.getElementById('menu_control').style.display = 'flex';
+    document.getElementById('game_menu').style.display = 'none';
+}
+
+function showDescription() {
+    document.getElementById('menu_description').style.display = 'flex';
+    document.getElementById('game_menu').style.display = 'none';
+}
+
+function showEnemies() {
+    document.getElementById('menu_enemies').style.display = 'flex';
+    document.getElementById('game_menu').style.display = 'none';
+}
+
+function showItems() {
+    document.getElementById('menu_items').style.display = 'flex';
+    document.getElementById('game_menu').style.display = 'none';
+}
+
+function showImpressum() {
+    document.getElementById('menu_impressum').style.display = 'flex';
+    document.getElementById('game_menu').style.display = 'none';
+}
+
+function btnClose() {
+    document.getElementById('game_menu').style.display = 'flex';
+    document.getElementById('menu_control').style.display = 'none';
+    document.getElementById('menu_description').style.display = 'none';
+    document.getElementById('menu_enemies').style.display = 'none';
+    document.getElementById('menu_items').style.display = 'none';
+    document.getElementById('menu_impressum').style.display = 'none';
+}
+
+document.getElementById("button_up").addEventListener("contextmenu", e => e.preventDefault());
+document.getElementById("button_down").addEventListener("contextmenu", e => e.preventDefault());
+document.getElementById("button_bobble").addEventListener("contextmenu", e => e.preventDefault());
+document.getElementById("button_left").addEventListener("contextmenu", e => e.preventDefault());
+document.getElementById("button_right").addEventListener("contextmenu", e => e.preventDefault());

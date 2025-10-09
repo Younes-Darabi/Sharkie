@@ -10,11 +10,10 @@ class Sound {
     static HITSOUND = new Audio('assets/sounds/hit.mp3');
     static GAMEOVER = new Audio('assets/sounds/game-over.mp3');
     static GAMEWIN = new Audio('assets/sounds/game-win.mp3');
-    static CLICK = new Audio('assets/sounds/click.mp3');
     static BUBBLE = new Audio('assets/sounds/bubble.mp3');
 
     static allSounds = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND];
-    static all = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND, Sound.GAMEOVER, Sound.GAMEWIN, Sound.CLICK, Sound.BUBBLE];
+    static all = [Sound.BGMUSIC, Sound.COINSOUND, Sound.POISONSOUND, Sound.ESHOCKSOUND, Sound.HITSOUND, Sound.GAMEOVER, Sound.GAMEWIN, Sound.BUBBLE];
     static volume = true;
 
     /**
