@@ -1,12 +1,40 @@
-let canvas, world;
+/**
+ * The main canvas element used for rendering the game.
+ * @type {HTMLCanvasElement}
+ */
+let canvas;
+
+/**
+ * The main game world instance.
+ * @type {World}
+ */
+let world;
+
+/**
+ * The keyboard input handler.
+ * @type {Keyboard}
+ */
 let keyboard = new Keyboard();
+
+/**
+ * Stores the current sound status before pausing or resuming the game.
+ * @type {boolean}
+ */
 let soundStatus;
+
+/**
+ * Indicates whether the game is currently in fullscreen mode.
+ * @type {boolean}
+ */
 let Fullscreen = false;
 
 /**
  * Initializes the game by hiding the menu, showing the game screen,
  * setting up the level, and creating the world and keyboard instance.
- * Sets default sound volumes.
+ * Also sets default sound volumes.
+ *
+ * @function
+ * @returns {void}
  */
 function init() {
     document.getElementById('game_menu').style.display = 'none';
@@ -23,6 +51,9 @@ function init() {
 /**
  * Toggles the game's sound on and off.
  * Updates the volume icon accordingly.
+ *
+ * @function
+ * @returns {void}
  */
 function volumeRender() {
     Sound.volume = !Sound.volume;
@@ -42,6 +73,9 @@ function volumeRender() {
 /**
  * Pauses the game and shows the pause menu.
  * Saves the current sound status.
+ *
+ * @function
+ * @returns {void}
  */
 function pauseRender() {
     soundStatus = Sound.volume;
@@ -54,6 +88,9 @@ function pauseRender() {
 
 /**
  * Resumes the game from the paused state and restores sound settings.
+ *
+ * @function
+ * @returns {void}
  */
 function playGameRender() {
     document.getElementById('game_paused').style.display = 'none';
@@ -65,6 +102,9 @@ function playGameRender() {
 
 /**
  * Toggles fullscreen mode for the game canvas and updates the screen icon.
+ *
+ * @function
+ * @returns {void}
  */
 function FullScreenRender() {
     Fullscreen = !Fullscreen;
@@ -76,7 +116,10 @@ function FullScreenRender() {
 
 /**
  * Enters fullscreen mode for the given game element.
+ *
+ * @function
  * @param {HTMLElement} element - The game container to display in fullscreen.
+ * @returns {void}
  */
 function enterFullScreen(element) {
     if (element.requestFullscreen) {
@@ -99,6 +142,9 @@ function enterFullScreen(element) {
 
 /**
  * Exits fullscreen mode and restores the original canvas size.
+ *
+ * @function
+ * @returns {void}
  */
 function exitFullScreen() {
     if (document.exitFullscreen) {
@@ -118,6 +164,13 @@ function exitFullScreen() {
     gameEnded.style.height = '480px';
 }
 
+/**
+ * Handles keyboard input for keydown events.
+ * Sets the appropriate keyboard properties to true.
+ *
+ * @event window#keydown
+ * @param {KeyboardEvent} e - The keydown event object.
+ */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 37) keyboard.LEFT = true;
     if (e.keyCode == 38) keyboard.UP = true;
@@ -126,6 +179,13 @@ window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) keyboard.SPACE = true;
 });
 
+/**
+ * Handles keyboard input for keyup events.
+ * Sets the appropriate keyboard properties to false.
+ *
+ * @event window#keyup
+ * @param {KeyboardEvent} e - The keyup event object.
+ */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 37) keyboard.LEFT = false;
     if (e.keyCode == 38) keyboard.UP = false;
@@ -134,6 +194,10 @@ window.addEventListener('keyup', (e) => {
     if (e.keyCode == 32) keyboard.SPACE = false;
 });
 
+/** 
+ * Adds touch event listeners for on-screen control buttons.
+ * Each button sets the corresponding keyboard direction or action.
+ */
 document.getElementById('button_up').addEventListener('touchstart', function () { keyboard.UP = true; });
 document.getElementById('button_bobble').addEventListener('touchstart', function () { keyboard.SPACE = true; });
 document.getElementById('button_down').addEventListener('touchstart', function () { keyboard.DOWN = true; });
@@ -146,31 +210,67 @@ document.getElementById('button_down').addEventListener('touchend', function () 
 document.getElementById('button_left').addEventListener('touchend', function () { keyboard.LEFT = false; });
 document.getElementById('button_right').addEventListener('touchend', function () { keyboard.RIGHT = false; });
 
+/**
+ * Displays the control menu and hides the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function showControl() {
     document.getElementById('menu_control').style.display = 'flex';
     document.getElementById('game_menu').style.display = 'none';
 }
 
+/**
+ * Displays the description menu and hides the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function showDescription() {
     document.getElementById('menu_description').style.display = 'flex';
     document.getElementById('game_menu').style.display = 'none';
 }
 
+/**
+ * Displays the enemies menu and hides the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function showEnemies() {
     document.getElementById('menu_enemies').style.display = 'flex';
     document.getElementById('game_menu').style.display = 'none';
 }
 
+/**
+ * Displays the items menu and hides the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function showItems() {
     document.getElementById('menu_items').style.display = 'flex';
     document.getElementById('game_menu').style.display = 'none';
 }
 
+/**
+ * Displays the impressum menu and hides the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function showImpressum() {
     document.getElementById('menu_impressum').style.display = 'flex';
     document.getElementById('game_menu').style.display = 'none';
 }
 
+/**
+ * Closes all submenus and returns to the main game menu.
+ *
+ * @function
+ * @returns {void}
+ */
 function btnClose() {
     document.getElementById('game_menu').style.display = 'flex';
     document.getElementById('menu_control').style.display = 'none';
@@ -180,6 +280,10 @@ function btnClose() {
     document.getElementById('menu_impressum').style.display = 'none';
 }
 
+/**
+ * Prevents the context menu from appearing on mobile touch controls.
+ * Improves gameplay experience on touch devices.
+ */
 document.getElementById("button_up").addEventListener("contextmenu", e => e.preventDefault());
 document.getElementById("button_down").addEventListener("contextmenu", e => e.preventDefault());
 document.getElementById("button_bobble").addEventListener("contextmenu", e => e.preventDefault());

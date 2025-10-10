@@ -1,6 +1,27 @@
+/**
+ * Represents the first game level with all enemies, items, background objects, and final boss.
+ * Initializes all objects including Jellyfish, Pufferfish, Coins, Poisons, and Background layers.
+ * @type {Level}
+ */
 let level1;
+
+/**
+ * Initializes level 1 by creating a new instance of the Level class.
+ * It sets up:
+ * - Different types of enemies (Jellys and Puffers)
+ * - Collectible coins
+ * - Poison obstacles
+ * - Layered background images for depth
+ * - The final enemy (boss)
+ */
 function initLevel() {
     level1 = new Level(
+        /**
+         * @type {JellyLila[]} Array of purple jellyfish enemies.
+         * @type {JellyPink[]} Array of pink jellyfish enemies.
+         * @type {JellyYellow[]} Array of yellow jellyfish enemies.
+         * @type {JellyGreen[]} Array of green jellyfish enemies.
+         */
         [
             new JellyLila(400),
             new JellyPink(800),
@@ -22,6 +43,10 @@ function initLevel() {
             new JellyYellow(4000),
             new JellyGreen(4100),
         ],
+
+        /**
+         * @type {MovableObject[]} Array of Puffer enemies in different colors.
+         */
         [
             new PufferRed(),
             new PufferGreen(),
@@ -43,6 +68,10 @@ function initLevel() {
             new PufferGreen(),
             new PufferOrange(),
         ],
+
+        /**
+         * @type {Coin[]} Array of collectible coins placed throughout the level.
+         */
         [
             new Coin(200, 410),
             new Coin(250, 370),
@@ -68,6 +97,10 @@ function initLevel() {
             new Coin(2950, 250),
             new Coin(3000, 300),
         ],
+
+        /**
+         * @type {Poison[]} Array of poison objects that act as obstacles.
+         */
         [
             new Poison(-300, 130),
             new Poison(-350, 130),
@@ -87,6 +120,10 @@ function initLevel() {
             new Poison(3050, 300),
             new Poison(3400, 50),
         ],
+
+        /**
+         * @type {BackgroundObject[]} Layered background objects creating depth effect.
+         */
         [
             new BackgroundObject('assets/images/3.Background/Layers/5. Water/D1.png', -screenWidth),
             new BackgroundObject('assets/images/3.Background/Layers/4.Fondo 2/D1.png', -screenWidth),
@@ -130,6 +167,10 @@ function initLevel() {
             new BackgroundObject('assets/images/3.Background/Layers/3.Fondo 1/D2.png', screenWidth * 6),
             new BackgroundObject('assets/images/3.Background/Dark/2.png', screenWidth * 6),
         ],
+
+        /**
+         * @type {FinalEnemy[]} Array containing the final level boss.
+         */
         [
             new FinalEnemy(),
         ]

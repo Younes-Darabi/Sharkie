@@ -44,7 +44,6 @@ canvas {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    overflow-y: auto;
 }
 
 .btn_menu {
@@ -165,10 +164,26 @@ canvas {
 
 .menu_control {
     display: none;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu_description {
     display: none;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu_description img {
@@ -183,9 +198,17 @@ canvas {
 }
 
 .menu_enemies {
-    display: none;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    display: none;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+    align-items: center;
+    gap: 10px;
 }
 
 .menu_enemies img {
@@ -213,6 +236,14 @@ canvas {
 
 .menu_items {
     display: none;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu_items p {
@@ -228,9 +259,20 @@ canvas {
 
 .menu_impressum {
     display: none;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 720px;
+    height: 480px;
+    border-radius: 5px;
 }
 
-
+.impressum {
+    background-color: rgba(255, 255, 255, 0.63);
+    padding: 20px 20px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
 
 
 
@@ -339,16 +381,6 @@ canvas {
     margin-bottom: 50px;
 }
 
-.impressum {
-    background-color: rgba(255, 255, 255, 0.63);
-    margin-top: 240px;
-    padding: 20px 20px;
-    border-radius: 5px;
-}
-
-
-
-
 @media (hover: none) and (orientation: portrait) {
     body {
         background-color: white;
@@ -378,6 +410,22 @@ canvas {
 }
 
 @media (hover: none) and (orientation: landscape) {
+
+    .game_menu {
+        gap: 5px;
+        width: 80%;
+        height: 80vh;
+    }
+
+    .sharkie_text {
+        font-size: 30px;
+    }
+
+    .sharkie_img {
+        width: 100px;
+    }
+
+
     .responsive_button {
         display: flex;
     }
@@ -392,5 +440,71 @@ canvas {
 
     .fullScreen_img {
         display: none;
+    }
+
+    .menu_control {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .key_img {
+        width: 500px;
+    }
+
+    .menu_description {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .menu_description img {
+        width: 200px;
+    }
+
+    .menu_description p {
+        color: white;
+        padding: 10px;
+        margin: 20px;
+    }
+
+    .menu_enemies {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .menu_enemies img {
+        width: 50px;
+    }
+
+    .menu_enemies p {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .menu_enemies div {
+        width: 100px;
+        height: 100px;
+    }
+
+    .menu_items {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .menu_items p {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .menu_items img {
+        width: 50px;
+    }
+
+    .menu_impressum {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .impressum {
+        padding: 10px 20px;
     }
 }
